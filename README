@@ -1,0 +1,7 @@
+when deploying to virtualbox ensure that virtualization enabled in the bios settings
+
+nixops create ./dev-infrastructure.nix ./webserver.nix -d webserver
+nixops deploy -d webserver
+
+nixops list
+nixops info
