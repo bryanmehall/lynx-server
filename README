@@ -1,7 +1,27 @@
 when deploying to virtualbox ensure that virtualization enabled in the bios settings
-
+if there is a "no route to host " or similar error then make sure that the host only adaptor setting in virtualbox
+matches the ip address created by nixops.
+this setting is in preferences -> network -> edit vboxnet0 -> edit DHCP settings
+then destroy, delete and create new nixops 
 nixops create ./dev-infrastructure.nix ./webserver.nix -d webserver
 nixops deploy -d webserver
 
-nixops list
+nixops list 
 nixops info
+
+nixops start                            //start and stop all servers
+nixops stop
+
+nix-env --delete-generations old        //free up space in local nix directory
+nix-store --gc
+
+nix-collect-garbage -d 
+
+
+####### debugging ######
+ssh into webserver: 
+nixops ssh webserver
+
+view systemd service logs
+journalctl -u lynxserver.service
+systemctl cat lynxserver.service

@@ -1,0 +1,19 @@
+{
+  "name": "lynx-server",
+  "version": "1.0.0",
+  "main": "lynx-webserver.js",
+  "license": "AGPL-3.0-or-later",
+  "scripts": {
+    "dev": "node server/lynx-webserver.js",
+    "prod": "node server/lynx-webserver.js"
+  },
+  "bin":{"lynx-server":"./server/lynx-webserver.js"},
+  "author": "Bryan Mehall <bryanmehall@gmail.com>",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}

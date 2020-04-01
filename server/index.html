@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Lynx</title>
+        
+    </head>
+    <body>
+        <div>LYNX</div>
+        <pre id="log"></pre>
+    </body>
+    <script>
+        var eventSource = new EventSource('/events');
+        eventSource.onmessage = function(event) {
+            document.getElementById('log').innerHTML += event.data + '<br>';
+        };
+    </script>
+</html>
