@@ -25,3 +25,9 @@ nixops ssh webserver
 view systemd service logs
 journalctl -u lynxserver.service
 systemctl cat lynxserver.service
+
+########### build image #########
+this section is based on: https://github.com/NixOS/nixpkgs/pull/66978
+To build the image for digital ocean run:
+$ nix build '(with import <nixpkgs> { }; nixos { imports = [<nixpkgs/nixos/modules/virtualisation/digital-ocean-image.nix>]; }).digitalOceanImage'
+

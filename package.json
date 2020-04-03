@@ -4,16 +4,27 @@
   "main": "lynx-webserver.js",
   "license": "AGPL-3.0-or-later",
   "scripts": {
-    "dev": "node server/lynx-webserver.js",
-    "prod": "node server/lynx-webserver.js"
+    "dev": "parcel build client/index.html server/lynx-webserver.ts --no-minify --target node && node dist/server/lynx-webserver.js",
+    "prod": "parcel build client/index.html server/lynx-webserver.ts"
   },
-  "bin":{"lynx-server":"./server/lynx-webserver.js"},
+  "shebang": [
+    {
+      "interpreter": "node",
+      "files": [
+        "./server/lynx-webserver.js"
+      ]
+    }
+  ],
+  "bin": {
+    "lynx-server": "./dist/server/lynx-webserver.js"
+  },
   "author": "Bryan Mehall <bryanmehall@gmail.com>",
   "private": true,
   "dependencies": {
-    "express": "^4.17.1"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.12.4"
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-shebang": "^1.2.8",
+    "typescript": "^3.8.3"
   }
 }
