@@ -3,16 +3,31 @@
     <head>
         <meta charset="utf-8">
         <title>Lynx</title>
-        
+        <link rel="stylesheet" type="text/css" href="styles.css"></link>
     </head>
     <body>
-        <div>LYNX</div>
-        <pre id="log"></pre>
+        <div id="header">
+            <div id="logo" class="header-tab">
+                <h1>LYNX</h1>
+            </div>
+            <div class="header-tab">Demos</div>
+            <div class="header-tab">Tutorial</div>
+            <div class="header-tab">Documentation</div>
+            <div class="header-tab">Community</div>
+            <div class="header-tab">About</div>
+            <a class="header-tab" href="whitepaper.html">Whitepaper</a>
+        </div>
+        
+        <canvas id="lynx-canvas"></canvas>
+        <div id="log"></div>
     </body>
     <script>
-        var eventSource = new EventSource('/events');
-        eventSource.onmessage = function(event) {
+        const eventSource = new EventSource('/subscribe')
+        eventSource.onmessage = (event) => {
             document.getElementById('log').innerHTML += event.data + '<br>';
-        };
+        }
+        eventSource.onerror = () => {
+            console.warn('Server Sent Events stream error')
+        }
     </script>
 </html>
