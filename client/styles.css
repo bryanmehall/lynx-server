@@ -1,15 +1,27 @@
+@font-face {
+    font-family: ComputerModernSans;
+    src: url(cmunss.ttf);
+}
+@font-face {
+    font-family: ComputerModern;
+    src: url(cmunrm.ttf);
+}
 body {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: ComputerModern, sans-serif;
+    font-size: 16pt;
     margin:auto;
 }
 #logo {
+    padding:15px;
+    display:flex;
 }
 #header {
     display: flex;
     align-items: center;
 }
 .header-tab {
-    font-size: 16pt;
+    font-family: ComputerModernSans, sans-serif;
+    font-size: 17pt;
     padding-left: 60px;
     color: rgb(96, 96, 96);
     text-decoration: none;
@@ -18,5 +30,5 @@ body {
 #lynx-canvas {
     width: 100%;
     height: 500px;
-    background-color:blue;
+    background-color:rgb(207, 207, 207);
 }
