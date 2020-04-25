@@ -37,7 +37,8 @@ const returnStatic = (req, res: http.ServerResponse) => {
         if (err){
             console.log(`Error fetching ${fileName}`, err)
         } else {
-            res.writeHead(200, {})
+            const options = path.extname(filePath) === '.svg' ? {'Content-Type': 'image/svg+xml'} : {}
+            res.writeHead(200, options)
             res.end(data)
         }
     })
