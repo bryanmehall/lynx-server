@@ -1,15 +1,33 @@
+
 @font-face {
-    font-family: ComputerModernSans;
-    src: url(cmunss.ttf);
+    font-family: Jost;
+    src: url(Jost-VariableFont_wght.ttf);
 }
 @font-face {
-    font-family: ComputerModern;
-    src: url(cmunrm.ttf);
+    font-family: Baskerville;
+    src: url(BaskervilleF-Regular.otf);
+}
+@font-face {
+    font-family: BaskervilleItalic;
+    src: url(BaskervilleF-Italic.otf);
 }
 body {
-    font-family: ComputerModern, sans-serif;
-    font-size: 16pt;
+    font-family: 'Jost';
+    font-weight: 350;
+    font-size: 12.5pt;
     margin:auto;
+}
+
+i {
+    font-family: BaskervilleItalic;
+    font-weight: normal;
+    font-style: normal;
+}
+h1 {
+    font-family: Jost;
+    font-weight: 500;
+    color: rgb(96, 96, 96);
+    font-size: 24pt;
 }
 #logo {
     padding:15px;
@@ -19,13 +37,32 @@ body {
     display: flex;
     align-items: center;
 }
+.content {
+    width: 50%;
+    margin-left: 15%;
+    text-justify: inter-word;
+}
+.footer {
+    margin: auto;
+    padding-top: 30px;
+}
+.formal {
+    font-family: 'Baskerville';
+    font-weight: normal;
+    font-size: 13.5pt;
+}
 .header-tab {
-    font-family: ComputerModernSans, sans-serif;
-    font-size: 17pt;
+    font-family: Jost, sans-serif;
+    font-size: 16pt;
     padding-left: 60px;
     color: rgb(96, 96, 96);
     text-decoration: none;
     cursor: pointer;
+}
+.blog-metadata {
+    padding-bottom: 10px;
+    font-size: 13pt;
+    font-family: Baskerville;
 }
 #lynx-canvas {
     width: 100%;

@@ -1,0 +1,12 @@
+<div class="blog-metadata footer">
+    <if condition="previousTitle === null">
+    </if>
+    <else>
+        previous: <a href="{{previousLink}}.html">{{previousTitle}}</a> 
+    </else>
+    <if condition="nextTitle === null">
+    </if>
+    <else>
+        next: <a href="{{nextLink}}.html">{{nextTitle}}</a> 
+    </else>
+</div>

@@ -4,7 +4,7 @@
   "main": "lynx-webserver.js",
   "license": "AGPL-3.0-or-later",
   "scripts": {
-    "dev-web":"parcel client/*.html --port 5000",
+    "dev-web": "parcel client/*.html --port 5000",
     "dev": "parcel build server/lynx-webserver.ts --no-minify --target node && parcel build client/*.html && node dist/lynx-webserver.js",
     "prod": "parcel build client/*.html server/lynx-webserver.ts --target node"
   },
@@ -21,11 +21,15 @@
   },
   "author": "Bryan Mehall <bryanmehall@gmail.com>",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "git": "^0.1.5"
+  },
   "devDependencies": {
     "@types/node": "^13.11.1",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-shebang": "^1.2.8",
+    "posthtml-expressions": "^1.7.1",
+    "posthtml-include": "^1.6.0",
     "typescript": "^3.8.3"
   }
 }
