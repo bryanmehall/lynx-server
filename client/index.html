@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Lynx</title>
-        <link rel="stylesheet" href="styles.css"></link>
-        <link rel="shortcut icon" type="image/png" href="favicon.png"/>
-    </head>
+    <include src="head.html" locals='{"title": "Home"}'></include>
     <body>
         <include src="header.html"></include>
         <canvas id="lynx-canvas"></canvas>
 
-        <div id="log">ABC</div>
+        <div id="log"></div>
     </body>
     <script>
         const eventSource = new EventSource('/subscribe')
