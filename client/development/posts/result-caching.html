@@ -5,8 +5,13 @@
         <include src="header.html"></include>
         <div class="content">
             <h1 class="blogTitle">Result Caching</h1>
-            <div class="blog-metadata">11 December 2020 <i>&#8212; Bryan Mehall</i></div>
-            Lynx is a computable specification language designed to make building great software more intuitive and efficient. Programming is fundamentally about human communication. After a brief discussion about the philosophy behind Lynx and what a programming ecosystem should look like, this document will detail the operational semantics of the Lynx language.  
+            <div class="blog-metadata">12 December 2020 <i>&#8212; Bryan Mehall</i></div>
+            <p>
+                One of the reasons for the last re-write of lynx was the speed of recursive functions. When an attribute of an object was accessed more than one time in the same scope it's value was recomputed with each access instead of being stored. With recursive functions this leads to exponential time complexity whenever an attribute is evaluated more then once.
+            </p>
+            <p>
+                The intended fix is to ensure that the lynx expression keeps the evaluated results of attributes whenever a primitive is being evaluated. This way the value does not need to be re-computed. A problem with this approach is the complexity of invalidating the cache whenever a cached value changes. This is handled by the modules system that will be explained elsewhere.
+            </p>
             <include src="development/blogfooter.html" locals='{
                 "previousTitle":"Initial Commit", 
                 "nextTitle":null,
