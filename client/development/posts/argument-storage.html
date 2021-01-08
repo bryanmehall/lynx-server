@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <include src="head.html" locals='{"title": "Argument Storage"}'></include>
+    <body>
+        <include src="header.html"></include>
+        <div class="content">
+            <h1 class="blogTitle">Argument Storage</h1>
+            <div class="blog-metadata">14 December 2020 <i>&#8212; Bryan Mehall</i></div>
+            <p>
+                As it's currently designed, arguments in lynx are evaluated by passing around a state object with the lynx expression. Whenever the functional evaluator reaches an argument it looks for that argument by name in the argument list and substitutes the value. The state object *should* be a read only value for every module function call which greatly simplifies the logic. However it is still not as clean as just passing around the lynx expression. For this reason it would be better if arguments were passed into the lynx expression by value.
+            </p>
+            <p>
+                The question is how to get the locations in the tree of the arguments so the values can be inserted. Should these be mutable so it is just at a constant reference location/pointer location? Or would this strategy cause problems?
+            </p>
+            <include src="development/blogfooter.html" locals='{
+                "previousTitle":"Result Caching", 
+                "nextTitle":"Higher Order Primitives",
+                "previousLink":"result-caching",
+                "nextLink":"higher-order-primitives"
+            }'></include>
+        </div>
+    </body>
+</html>

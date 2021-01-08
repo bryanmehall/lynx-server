@@ -31,8 +31,10 @@ const sendEvent = (res: http.ServerResponse) => {
 }
 
 const returnStatic = (req, res: http.ServerResponse) => {
-    const fileName = req.url === '/' ? './index.html' : req.url
+    const url = req.url
+    const fileName = url[url.length-1] === '/' ? url+'index.html' : url
     const filePath = path.join(__dirname, fileName)
+    console.log(filePath)
     fs.readFile(filePath, (err, data) => {
         if (err){
             console.log(`Error fetching ${fileName}`, err)

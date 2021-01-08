@@ -12,6 +12,12 @@
                 The Lynx language is an attempt to rebuild the programing ecosystem from first principles. 
                 Joe Armstrong, the inventor of Erlang
             </p>
+            <h1>Evaluation Semantics</h1>
+            <p>
+                Objects in lynx are stored as trees but to be able to do computation we need to add a few concepts. The big idea is that the program we are running and the result we are trying to arrive at already exist in the tree an we only need to move from one to the other.  To make this more concrete, let's introduce the concept of a "cursor" that can be thought of as our current position in the tree. In these diagrams we will highlight the cursor in blue. We will call the combination of a lynx object tree and a cursor an expression. 
+            </p>
+            <img src="cursor.svg" alt="label of cursor and expression" class="diagram" style="width:300px">
+            <i>E<sub>1</sub> = </i>apply(<i>E<sub>2</sub> , </i>attr)
         </div>
     </body>
 </html>
