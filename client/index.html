@@ -8,12 +8,13 @@
         <div id="log"></div>
     </body>
     <script>
+        /* comment out eventSource test
         const eventSource = new EventSource('/subscribe')
         eventSource.onmessage = (event) => {
             document.getElementById('log').innerHTML += event.data + '<br>';
         }
         eventSource.onerror = () => {
             console.warn('Server Sent Events stream error')
-        }
+        }*/
     </script>
 </html>

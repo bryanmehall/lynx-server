@@ -30,6 +30,7 @@ h1 {
 }
 #logo {
     padding:15px;
+    margin-left:100px;
     display:flex;
 }
 #header {
