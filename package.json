@@ -6,7 +6,7 @@
   "scripts": {
     "dev-web": "parcel client/*.html --port 5000",
     "dev": "parcel build server/lynx-webserver.ts --no-minify --target node && parcel build client/*.html && node dist/lynx-webserver.js",
-    "prod": "parcel build client/*.html server/lynx-webserver.ts --target node --out-dir docs"
+    "prod": "parcel build client/*.html --target node --out-dir docs"
   },
   "shebang": [
     {
