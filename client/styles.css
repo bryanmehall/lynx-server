@@ -17,6 +17,9 @@ body {
     font-size: 12.5pt;
     margin:auto;
 }
+a {
+    text-decoration: none;
+}
 i {
     font-family: BaskervilleItalic;
     font-weight: normal;
