@@ -15,7 +15,6 @@ body {
     font-family: 'Jost';
     font-weight: 350;
     font-size: 12.5pt;
-    margin:auto;
 }
 a {
     text-decoration: none;
@@ -31,19 +30,19 @@ h1 {
     color: rgb(96, 96, 96);
     font-size: 24pt;
 }
-#logo {
-    padding:15px;
-    margin-left:15%;
-    display:flex;
-}
 #header {
+    padding-top:20px;
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    align-items: baseline;
+    max-width: 700px;
+    margin: 0 auto;
 }
 .content {
     max-width: 600px;
-    margin-left: 15%;
+    padding-top: 20px;
     text-justify: inter-word;
+    margin: 0 auto;
 }
 .footer {
     margin: auto;
@@ -64,9 +63,10 @@ h1 {
 .header-tab {
     font-family: Jost, sans-serif;
     font-size: 16pt;
-    padding-left: 60px;
+    padding-right:50px;
     color: rgb(96, 96, 96);
     text-decoration: none;
+    display:flex;
     cursor: pointer;
 }
 .blog-metadata {
