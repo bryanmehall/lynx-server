@@ -1,0 +1,50 @@
+<div>
+    <h2 id="types">Types</h2>
+    <p>
+        Types are used to constrain the behavior of programs and, when they are well-formed, ensure correctness within the boundaries of the type system. In some dynamically types languages like javascript or python every the typing is considered "weak" because there are very few rules about which objects can be used in which places. This is often seen as a feature because it is less confusing for beginners writing simple programs.
+    </p>
+    <p>
+        Lynx takes the opposite approach. Type structures can always be relaxed selectively but when there is no type structure then the ability to reason about programs is lost. One way of thinking about it is that a weakly typed language can be created in a strongly typed language by purposefully relaxing all of the rules but the rules but a strongly typed language can not be replicated in a weakly typed language so the strongly typed language must be more expressive.
+    </p>
+    <p>
+        <ul>
+            <li>Problem #1: Types specify structure not behavior</li>
+            <li>Problem #2: Equal types are not necessarily interchangeable</li>
+            <li>Problem #3:  Data can only be an instance of a single type</li>
+        </ul>
+       
+    </p>
+    <h3 id="types-through-examples">Types Through Examples</h3>
+    <p>
+        When we are programming is is useful to start defining types as the simple case and then creating a more general version later. This process of generalizations often gets programmers in trouble where they used a specific version of a type somewhere in their code and the new generalization breaks it. let's start with a very basic example. We can create a new object called "zero" and say it is an element of the natural numbers by adding a subtype (isA) relation between it and the "natural number" object.
+    </p>
+    <img src="/whitepaper/sections/zero-nat.svg" alt="Zero is a Natural Number" class="diagram" style="width:191px"/>
+    <p> 
+        Now we can say "one is also a natural number" so we add the definition \(\text{One}: \text{Nat}\) and \(\text{Two}:\text{Nat}\)
+    </p>
+    <img src="/whitepaper/sections/n-nat.svg" alt="Zero is a Natural Number" class="diagram" style="width:221px"/>
+    <h3>Type Theory</h3>
+    To understand the lynx type system we first need some background in traditional type theory. Unlike types for languages like C++ or Java, types in lynx have a more formal structure. This chapter will be written without the expectation that you have any background in formal type theories and should be accessible to someone familiar with programming in dynamically typed languages like python or javascript. If you already know type theory you can skip this section and the section on Algebraic Data Types.
+    <p>
+        We will use construction of a coordinate point as a motivating example throughout this chapter. A coordinate point consists of an x-coordinate and a y coordinate and can be written as a pair (x,y). Notice that this contains two pieces of information: an x-coordinate that is a number and a y-coordinate that is a number. We will use the notation \(x: \text{Number}\) (read "\(x\) is of type number") as a shorthand. With this notation we can also say, \(y: \text{Number}\) and \((x, y):\text{CoordinatePoint}\).
+    </p>
+    <p>
+        Formal type theory has different kinds of rules that describe how types are formed and used. We will introduce 3 types of rules: introduction rules, elimination rules and computation rules.
+
+        <ol>
+            <li>The Introduction rule describes how a type is constructed</li>
+            <li>The Elimination rule describes how a type that is already constructed can be broken back apart into its pieces</li>
+            <li>The Computation rule checks that the introduction rules match with the elimination rules and creates a way to "run" these types as programs</li>
+        </ol>
+    </p>
+    <h4>Introduction Rules</h4>
+    <p>
+        Given we have something called x that is a number and we have something called y that is a number we can create a coordinate point (x, y). The notation we use for this in type theory is: \[\frac{x:\text{Number} \quad y:\text{Number}}{(x, y):\text{CoordinatePoint}}\] The text above the line are the assumptions required for the text below the line to be true. So to create a coordinate point we need a number \(x\) and a number \(y\). Assuming we have both of these we can create a coordinate point.
+    </p>
+    <h4>Elimination Rules</h4>
+    <p>
+        Elimination rules are sort of the inverse of introduction rules. They ask "given that we already have a coordinate point, what information can we pull out of it?" In this case there two elimination rules that we'll call \(E_1\) and \(E_2\):\[\begin{align} \frac{(x, y):\text{CoordinatePoint}}{x:\text{Number}}(E_1) && \frac{(x, y):\text{CoordinatePoint}}{ y:\text{Number}}\left(E_2\right)\end{align}\] \(E_1\) says that we if we have a coordinate point we can extract an x coordinate that is of type number and  \(E_2\) says that we can also extract a y-coordinate of type number. Notice that these elimination rules are a sort of inverse to the introduction rule. The introduction rule shows how to put pieces together and the elimination rule shows how to take them back apart. This concept will be made more formal with the computation rule.If all of this seems too basic to you, consider this: Even though these rules are simple and may seem trivial, they form a structure of types that can be checked by a computer. As types get more complicated, the computer can check that the programmer has handled every case and that the types fit together. The mechanization this allows is the important part
+    </p>
+    <h4>Computation Rules</h4>
+
+</div>

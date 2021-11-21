@@ -3,21 +3,73 @@
     <include src="head.html" locals='{"title": "Whitepaper"}'></include>
     <body>
         <include src="header.html"></include>
-        <div class="content formal">
-            <p>
-                Lynx is a computable specification language designed to make building great software more intuitive and efficient. Programming is fundamentally about human communication.  After a brief discussion about the philosophy behind Lynx and what a programming ecosystem should look like, this document will detail the operational semantics of the Lynx language.
-            </p>
-            <h1> The Mess We're In</h1>
-            <p>
-                The Lynx language is an attempt to rebuild the programing ecosystem from first principles. 
-                Joe Armstrong, the inventor of Erlang
-            </p>
-            <h1>Evaluation Semantics</h1>
-            <p>
-                Objects in lynx are stored as trees but to be able to do computation we need to add a few concepts. The big idea is that the program we are running and the result we are trying to arrive at already exist in the tree an we only need to move from one to the other.  To make this more concrete, let's introduce the concept of a "cursor" that can be thought of as our current position in the tree. In these diagrams we will highlight the cursor in blue. We will call the combination of a lynx object tree and a cursor an expression. 
-            </p>
-            <img src="cursor.svg" alt="label of cursor and expression" class="diagram" style="width:300px">
-            <i>E<sub>1</sub> = </i>apply(<i>E<sub>2</sub> , </i>attr)
+        <div class= content>
+            This is a working draft of the design rationale and formal specification of the Lynx Programming Language
+        </div>
+        
+        <div class="whitepaper">
+            <div class="outline">
+                <ul>
+                    <li>Part I &#8211; Design</li>
+                    <ul>
+                        <li><a href="#what-is-programming">What is Programming?</a></li>
+                        <li>Programming Interface</li>
+                        <ul>
+                            <li>Human Representations</li>
+                            <li>Why Not Code?</li>
+                            <li>Machine Representations</li>
+                        </ul>
+                        <li>Programming Ecosystem</li>
+                        <ul>
+                            <li>The Mess We're In</li>
+                        </ul>
+                        <li>Software Correctness</li>
+                    </ul>
+                    <li>Part II &#8211; Specification</li>
+                    <ul>
+                        <li><a href="#object-context">The Object-Context Paradigm</a></li>
+                        <li>Correspondence with Functional Programming</li>
+                        <li>Abstract Syntax</li>
+                        <li>Statics</li>
+                        <li>Dynamics</li>
+                        <li><a href="#types">Types</a></li>
+                        <ul>
+                            <li>Equality</li>
+                            <li>Canonicity</li>
+                            <li>Subtyping</li>
+                            <li>Approximations</li>
+                        </ul>
+                        <li>State</li>
+                        <li>Events</li>
+    
+                    </ul>
+                    <li>Part III &#8211; Implementation</li>
+                    <ul>
+                        <li>Metacircularity</li>
+                        <li>Primitives</li>
+                        <li>Modules</li>
+                        <li>Optimization</li>
+                        <li>Approximation</li>
+                    </ul>
+                </ul>
+            </div>
+            <div class="whitepaperContent formal">
+                <h1>Part I &#8211; Design</h1>
+                <p>
+                    Lynx is a computable specification language designed to make building great software more intuitive and efficient. Programming is fundamentally about human communication.  After a brief discussion about the philosophy behind Lynx and what a programming ecosystem should look like, this document will detail the formal specification of the Lynx language.
+                </p>
+                <include src="./whitepaper/sections/what-is-programming.html"></include>
+                <h3> The Mess We're In</h3>
+                <p>
+                    The Lynx language is an attempt to rebuild the programing ecosystem from first principles. 
+                    Joe Armstrong, the inventor of Erlang
+                </p>
+                <h1>Part II &#8211; Specification</h1>
+                <include src="./whitepaper/sections/object-context/object-context.html"></include>
+                <include src="./whitepaper/sections/types.html"></include>
+
+            </div>
+            <div class=notes>Informal notes or commentary will be on the right. Click on highlighted parts of the text for help with notation</div>
         </div>
     </body>
 </html>
