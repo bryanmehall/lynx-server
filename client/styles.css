@@ -16,8 +16,15 @@ body {
     font-weight: 350;
     font-size: 12.5pt;
 }
-a {
+a { 
+    color: blue;
+    cursor: pointer;
     text-decoration: none;
+}
+ul{
+    list-style-type: none;
+    margin-left: 0;
+    padding-left:20px;
 }
 i {
     font-family: BaskervilleItalic;
@@ -30,19 +37,46 @@ h1 {
     color: rgb(96, 96, 96);
     font-size: 24pt;
 }
+h2 {
+    font-family: Jost;
+    font-weight: 500;
+    color: rgb(96, 96, 96);
+    font-size: 19pt;
+}
+h3 {
+    font-family: Jost;
+    font-weight: 500;
+    color: rgb(96, 96, 96);
+    font-size: 16pt;
+}
 #header {
     padding-top:20px;
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    max-width: 700px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .content {
-    max-width: 600px;
+    max-width: 700px;
     padding-top: 20px;
     text-justify: inter-word;
     margin: 0 auto;
+}
+.whitepaper {
+    display:flex;
+    justify-content: center;
+}
+.whitepaperContent {
+    max-width: 700px;
+}
+.outline {
+    max-width:300px;
+    font-size: 11pt;
+    color: rgb(96, 96, 96);
+}
+.notes {
+    max-width:300px;
 }
 .footer {
     margin: auto;

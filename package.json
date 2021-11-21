@@ -4,7 +4,7 @@
   "main": "lynx-webserver.js",
   "license": "AGPL-3.0-or-later",
   "scripts": {
-    "dev-web": "parcel client/index.html --port 5000",
+    "dev-web": "parcel client/index.html client/demos/index.html client/development/index.html client/whitepaper/index.html --port 5000",
     "dev": "parcel build server/lynx-webserver.ts --no-minify --target node && parcel build client/*.html && node dist/lynx-webserver.js",
     "prod": "parcel build client/index.html  client/demos/index.html client/development/index.html client/whitepaper/index.html --target node --out-dir docs"
   },
