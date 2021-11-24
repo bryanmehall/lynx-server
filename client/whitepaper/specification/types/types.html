@@ -18,11 +18,11 @@
     <p>
         When we are programming is is useful to start defining types as the simple case and then creating a more general version later. This process of generalizations often gets programmers in trouble where they used a specific version of a type somewhere in their code and the new generalization breaks it. let's start with a very basic example. We can create a new object called "zero" and say it is an element of the natural numbers by adding a subtype (isA) relation between it and the "natural number" object.
     </p>
-    <img src="/whitepaper/sections/zero-nat.svg" alt="Zero is a Natural Number" class="diagram" style="width:191px"/>
+    <img src="/whitepaper/specification/types/zero-nat.svg" alt="Zero is a Natural Number" class="diagram" style="width:191px"/>
     <p> 
         Now we can say "one is also a natural number" so we add the definition \(\text{One}: \text{Nat}\) and \(\text{Two}:\text{Nat}\)
     </p>
-    <img src="/whitepaper/sections/n-nat.svg" alt="Zero is a Natural Number" class="diagram" style="width:221px"/>
+    <img src="/whitepaper/specification/types/n-nat.svg" alt="Zero is a Natural Number" class="diagram" style="width:221px"/>
     <h3>Type Theory</h3>
     To understand the lynx type system we first need some background in traditional type theory. Unlike types for languages like C++ or Java, types in lynx have a more formal structure. This chapter will be written without the expectation that you have any background in formal type theories and should be accessible to someone familiar with programming in dynamically typed languages like python or javascript. If you already know type theory you can skip this section and the section on Algebraic Data Types.
     <p>

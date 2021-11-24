@@ -1,0 +1,9 @@
+<div>
+    <p>
+        One of the goals of lynx is to separate the specification of a program from its implementation. The specification and implementation of the language itself is no different. Lynx is (eventually) written in itself so the underlying implementation of the language can be swapped out without affecting its behavior.
+    </p>
+    <h2>Primitives</h2>
+    <p>
+        The most basic way the implementation and the specification are separated is with the concept of primitives. A specification for a basic building block of computation serves as the denotational semantics for an underlying language feature that does the actual computation. For example, we could define a type in lynx for 32 bit unsigned integers as a list of binary digits with length 32. We can then define a webAssembly uint32 as a primitive for this type. The primitive states without proof (but with tests) that the specification for a uint32 has a one-to-one correspondence with a webassembly uint32. The compiler can then decide to use the webassembly uint32 as an optimization. In practice, this is how all computation in lynx is done.
+    </p>
+</div>

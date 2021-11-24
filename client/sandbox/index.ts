@@ -7,7 +7,7 @@ document.body.onload = () => {
     const testName = location[3] || 'simple-get'
     console.log(tests, group, testName, location)
     loadFiles(type, group, testName).then(createRuntime)
-    const groups = document.getElementById('groups')
+    /*const groups = document.getElementById('groups')
     Object.entries(tests).forEach((groupEntry) => {
         const groupName = groupEntry[0]
         const groupTests = groupEntry[1]
@@ -28,7 +28,7 @@ document.body.onload = () => {
                 loadFiles(type, groupName, testName).then(createRuntime)
             })
         })
-    })
+    })*/
 }
 const createRuntime = (fileDataList) => { 
     const lynxText = fileDataList.map((fileData) => (fileData.text)).join('\n')
@@ -37,13 +37,22 @@ const createRuntime = (fileDataList) => {
     const entryPointStringBox = document.getElementById('entryPoint')
     const entryPointString = entryPointStringBox.value
     initRuntime(fileDataList, entryPointString)
-    const ontextChange = () => {
+    const onKeyPress = (e) => {
+        const TABKEY = 9
+        console.log('tab')
+		if(e.keyCode == TABKEY) {
+            
+            //insertAtCursor(myInput, tabString);
+            if(e.preventDefault) {
+                e.preventDefault()
+            }
+            return false
+        }
         const entryPointString = entryPointStringBox.value
         const lynxText = lynxTextBox.value
         initRuntime(fileDataList, entryPointString)
     }
-    lynxTextBox.addEventListener('change', ontextChange)
-    entryPointStringBox.addEventListener('change', ontextChange)
+    lynxTextBox.addEventListener('keypress', onKeyPress)
 }
 
 const RENDER_ENTRYPOINT = "\\app.graphicalRepresentation.jsRep"

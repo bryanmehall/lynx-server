@@ -29,14 +29,17 @@
                     <ul>
                         <li><a href="#object-context">The Object-Context Paradigm</a></li>
                         <li>Correspondence with Functional Programming</li>
-                        <li>Abstract Syntax</li>
-                        <li>Statics</li>
+                        <li><a href="#statics">Statics</a></li>
+                        <ul>
+                            <li>Abstract Syntax</li>
+                            <li>Typing Judgements</li>
+                        </ul>
                         <li>Dynamics</li>
                         <li><a href="#types">Types</a></li>
                         <ul>
                             <li>Equality</li>
-                            <li>Canonicity</li>
                             <li>Subtyping</li>
+                            <li>Canonicity</li>
                             <li>Approximations</li>
                         </ul>
                         <li>State</li>
@@ -58,16 +61,21 @@
                 <p>
                     Lynx is a computable specification language designed to make building great software more intuitive and efficient. Programming is fundamentally about human communication.  After a brief discussion about the philosophy behind Lynx and what a programming ecosystem should look like, this document will detail the formal specification of the Lynx language.
                 </p>
-                <include src="./whitepaper/sections/what-is-programming.html"></include>
+                <include src="./whitepaper/design/what-is-programming.html"></include>
+                <h2>Why not code? </h2>
+                    Traditional text-based coding is the standard that almost every general purpose programming language uses because of its expressive power and flexibility. The few graphical programming languages that exist fall short because they try to replicate the semantics of text-based code but in graphical form. Lynx takes a different approach. 
                 <h3> The Mess We're In</h3>
                 <p>
                     The Lynx language is an attempt to rebuild the programing ecosystem from first principles. 
                     Joe Armstrong, the inventor of Erlang
                 </p>
                 <h1>Part II &#8211; Specification</h1>
-                <include src="./whitepaper/sections/object-context/object-context.html"></include>
-                <include src="./whitepaper/sections/types.html"></include>
-
+                <include src="./whitepaper/specification/object-context/object-context.html"></include>
+                <include src="./whitepaper/specification/statics/statics.html"></include>
+                <include src="./whitepaper/specification/types/types.html"></include>
+                <h1>Part III &#8211; Implementation</h1>
+                
+                <include src="./whitepaper/implementation/primitives.html"></include>
             </div>
             <div class=notes>Informal notes or commentary will be on the right. Click on highlighted parts of the text for help with notation</div>
         </div>

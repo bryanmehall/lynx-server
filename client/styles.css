@@ -78,6 +78,10 @@ h3 {
 .notes {
     max-width:300px;
 }
+.def {
+    font-family: BaskervilleItalic;
+    color:rgb(38, 38, 168)
+}
 .footer {
     margin: auto;
     padding-top: 30px;
