@@ -1,20 +1,20 @@
 <div>
     <h2 id="object-context">The Object-Context Paradigm</h2>
     <p>
-        With lynx we introduce a new programming paradigm called the object-context paradigm. The object oriented style matches the way people think about concepts in the real world more closely than functional or imperative programming styles. This is one reason for the relative popularity of object oriented programming. Lynx uses a carefully constrained form of Object Oriented programming such that the richer analysis tools from functional programming can be used. Lynx is a purely declarative form of object oriented programming.
+        With lynx we introduce a new programming paradigm called the object-context paradigm. The object oriented style matches the way people think about concepts in the real world more closely than functional or imperative programming styles. This is one reason for the relative popularity of object oriented programming. Lynx uses a carefully constrained form of Object Oriented programming so that programs have a more intuitive understanding while still allowing for the more strict program analysis like in a functional paradigm. Lynx can also be thought of as a purely declarative form of object oriented programming.
     </p>
     <p>
         Objects in Lynx consist of a mapping between attributes and values. Both attributes and values are also objects. One way to represent objects graphically is with a tree diagram where the objects are nodes and the attributes are edges. 
     </p>
-    <img src="./specification/object-context/object-value.svg" alt="Object and value connected by attribute" class="diagram" style="width:43px"/>
+    <embed src="/whitepaper/specification/object-context/object-value.drawio.svg" alt="Object and value connected by attribute" class="diagram"/>
     <p>
         Objects can have multiple attributes that are represented as different branches of the tree. and because values are also objects the tree can be multiple levels deep. This forms a recursive data type that can be used to represent any other data type in lynx. 
     </p>
-    <img src="./specification/object-context/multiple-attributes.svg" alt="Objects can have multiple attributes" class="diagram" style="width:181px"/>
+    <embed src="/whitepaper/specification/object-context/multiple-attributes.drawio.svg" alt="Objects can have multiple attributes" class="diagram"/>
     <p>
         We will use text being drawn on a screen as an example. The text can have several attributes like its position on the screen, the string to be printed, font type, font size etc. We can also attach metadata like the name of the textbox as an attribute. 
     </p>
-    <img src="./specification/object-context/simple-text-box.svg" alt="simple text box" class="diagram" style="width:341px"/>
+    <embed src="/whitepaper/specification/object-context/simple-text-box.drawio.svg" alt="simple text box" class="diagram"/>
     <p>
         Every tree or subtree in this diagram is an object. So far, this is just describes a static graphical layout. Lynx is able to do computation when we introduce context and references.
     </p>

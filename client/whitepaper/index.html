@@ -10,7 +10,7 @@
         <div class="whitepaper">
             <div class="outline">
                 <ul>
-                    <li>Part I &#8211; Design</li>
+                    <li><a href="#design">Part I &#8211; Design</a></li>
                     <ul>
                         <li><a href="#what-is-programming">What is Programming?</a></li>
                         <li>Programming Interface</li>
@@ -25,10 +25,10 @@
                         </ul>
                         <li>Software Correctness</li>
                     </ul>
-                    <li>Part II &#8211; Specification</li>
+                    <li><a href="#specification">Part II &#8211; Specification</a></li>
                     <ul>
                         <li><a href="#object-context">The Object-Context Paradigm</a></li>
-                        <li>Correspondence with Functional Programming</li>
+                        <li><a href="#type-hierarchy">Type Hierarchy</a></li>
                         <li><a href="#statics">Statics</a></li>
                         <ul>
                             <li>Abstract Syntax</li>
@@ -46,38 +46,39 @@
                         <li>Events</li>
     
                     </ul>
-                    <li>Part III &#8211; Implementation</li>
+                    <li><a href="#implementation">Part III &#8211; Implementation</a></li>
                     <ul>
                         <li>Metacircularity</li>
+                        <li>Persistance</li>
                         <li>Primitives</li>
                         <li>Modules</li>
+                        <li>Compilation</li>
+                        <li>Parallelism</li>
                         <li>Optimization</li>
                         <li>Approximation</li>
                     </ul>
                 </ul>
             </div>
             <div class="whitepaperContent formal">
-                <h1>Part I &#8211; Design</h1>
+                <h1 id="design">Part I &#8211; Design</h1>
                 <p>
                     Lynx is a computable specification language designed to make building great software more intuitive and efficient. Programming is fundamentally about human communication.  After a brief discussion about the philosophy behind Lynx and what a programming ecosystem should look like, this document will detail the formal specification of the Lynx language.
                 </p>
                 <include src="./whitepaper/design/what-is-programming.html"></include>
-                <h2>Why not code? </h2>
-                    Traditional text-based coding is the standard that almost every general purpose programming language uses because of its expressive power and flexibility. The few graphical programming languages that exist fall short because they try to replicate the semantics of text-based code but in graphical form. Lynx takes a different approach. 
-                <h3> The Mess We're In</h3>
-                <p>
-                    The Lynx language is an attempt to rebuild the programing ecosystem from first principles. 
-                    Joe Armstrong, the inventor of Erlang
-                </p>
-                <h1>Part II &#8211; Specification</h1>
+                <include src="./whitepaper/design/programming-interface.html"></include>
+                <include src="./whitepaper/design/program-correctness.html"></include>
+
+                <h1 id="specification">Part II &#8211; Specification</h1>
                 <include src="./whitepaper/specification/object-context/object-context.html"></include>
-                <include src="./whitepaper/specification/statics/statics.html"></include>
-                <include src="./whitepaper/specification/types/types.html"></include>
-                <h1>Part III &#8211; Implementation</h1>
+                <include src="./whitepaper/specification/type-hierarchy/index.html"></include>
+                <include src="./whitepaper/specification/lynx-expressions/index.html"></include>
+                <include src="./whitepaper/specification/abstract-types/types.html"></include>
+                <include src="./whitepaper/specification/type-equality/type-equality.html"></include>
+                <h1 id="implementation">Part III &#8211; Implementation</h1>
                 
                 <include src="./whitepaper/implementation/primitives.html"></include>
             </div>
-            <div class=notes>Informal notes or commentary will be on the right. Click on highlighted parts of the text for help with notation</div>
+            <aside class=notes>Informal notes or commentary will be on the right. Click on highlighted parts of the text for help with notation</aside>
         </div>
     </body>
 </html>

@@ -33,21 +33,35 @@ i {
 }
 h1 {
     font-family: Jost;
+    text-align: center;
     font-weight: 500;
+    padding-top: 50px;
     color: rgb(96, 96, 96);
-    font-size: 24pt;
+    font-size: 30pt;
 }
 h2 {
     font-family: Jost;
     font-weight: 500;
     color: rgb(96, 96, 96);
-    font-size: 19pt;
+    font-size: 28pt;
 }
 h3 {
     font-family: Jost;
     font-weight: 500;
     color: rgb(96, 96, 96);
-    font-size: 16pt;
+    font-size: 22pt;
+}
+h4 {
+    font-family: Jost;
+    font-weight: 500;
+    color: rgb(96, 96, 96);
+    font-size: 18pt;
+}
+h5 {
+    font-family: Jost;
+    font-weight: 500;
+    color: rgb(96, 96, 96);
+    font-size: 15pt;
 }
 #header {
     padding-top:20px;
@@ -73,6 +87,7 @@ h3 {
 .outline {
     max-width:300px;
     font-size: 11pt;
+    padding-right: 30px;
     color: rgb(96, 96, 96);
 }
 .notes {
@@ -80,7 +95,7 @@ h3 {
 }
 .def {
     font-family: BaskervilleItalic;
-    color:rgb(38, 38, 168)
+    color:rgb(61, 124, 126);
 }
 .footer {
     margin: auto;
@@ -96,7 +111,8 @@ h3 {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 .header-tab {
     font-family: Jost, sans-serif;

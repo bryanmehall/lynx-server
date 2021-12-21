@@ -1,0 +1,21 @@
+<div>
+    <h2 id="type-equality">Equality Relations</h2>
+    <p> 
+        Lynx has a richer notion of equality of elements than other languages. It is built on top of lynx expressions in the form of equality relations.
+    </p>
+    Atomic Equality
+    \[\frac{v:\tau}{v=_\tau v}\]
+    Expression Equality
+    \[\frac{e_1\Downarrow_\tau v_1 \quad e_2\Downarrow_\tau v_2 \quad v_1\equiv_\tau v_2}{e_1 =_\tau e_2}
+    \]
+    Product Type Equality
+    \[\frac{e_1 =_\tau e_2 \quad e_3 =_\sigma e_4}{e_1 \times e_3 =_{\tau \times \sigma} e_2 \times e_4}\]
+    Sum Type Equality
+    \[\frac{}{}\]
+    Use two representations of the natural numbers as an example. We want to be able to prove that the binary representation of the natural numbers is equal to the unary representation    
+    Function Equality
+    One approach to determining equality of functions is called Function Extensionality. Under this definition, two functions \(f: A\rightarrow B\) and \(g: A \rightarrow B\) are equivalent iff for every \(a:A\) \(f(a) =_B g(a)\)
+
+    Reflexivity
+    \[\frac{e:\tau}{e =_\tau e}\]
+</div>
