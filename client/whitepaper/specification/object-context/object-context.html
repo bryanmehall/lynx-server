@@ -6,34 +6,34 @@
     <p>
         Objects in Lynx consist of a mapping between attributes and values. Both attributes and values are also objects. One way to represent objects graphically is with a tree diagram where the objects are nodes and the attributes are edges. 
     </p>
-    <embed src="/whitepaper/specification/object-context/object-value.drawio.svg" alt="Object and value connected by attribute" class="diagram"/>
+    <object type="image/svg+xml" data="/whitepaper/specification/object-context/object-value.drawio.svg" class="diagram"></object>
     <p>
         Objects can have multiple attributes that are represented as different branches of the tree. and because values are also objects the tree can be multiple levels deep. This forms a recursive data type that can be used to represent any other data type in lynx. 
     </p>
-    <embed src="/whitepaper/specification/object-context/multiple-attributes.drawio.svg" alt="Objects can have multiple attributes" class="diagram"/>
+    <object type="image/svg+xml" data="/whitepaper/specification/object-context/multiple-attributes.drawio.svg" alt="Objects can have multiple attributes" class="diagram"></object>
     <p>
         We will use text being drawn on a screen as an example. The text can have several attributes like its position on the screen, the string to be printed, font type, font size etc. We can also attach metadata like the name of the textbox as an attribute. 
     </p>
-    <embed src="/whitepaper/specification/object-context/simple-text-box.drawio.svg" alt="simple text box" class="diagram"/>
+    <object type="image/svg+xml" data="/whitepaper/specification/object-context/simple-text-box.drawio.svg" alt="Objects can have multiple attributes" class="diagram"></object>
     <p>
         Every tree or subtree in this diagram is an object. So far, this is just describes a static graphical layout. Lynx is able to do computation when we introduce context and references.
     </p>
     <p>
         We can describe a text object (text box) whose position is defined by the graphical element it is put inside.  We will call the "parentElement" of the text box "group" and then we will put the group element inside of a window.
     </p>
-    <img src="./specification/object-context/text-box.svg" alt="Objects can have multiple attributes" class="diagram" style="width:411px"/>
+    <object type="image/svg+xml" data="/whitepaper/specification/object-context/text-box.drawio.svg" alt="Objects can have multiple attributes" class="diagram"></object>
     <p>
         This can be represented by the lynx object tree:
     </p>
-    <img src="./specification/object-context/text-box-tree.svg" alt="Objects can have multiple attributes" class="diagram" style="width:645px"/>
+    <object type="image/svg+xml" data="/whitepaper/specification/object-context/text-box-tree.drawio.svg" alt="Objects can have multiple attributes" class="diagram"></object>
     <p>
         In this case the text object (text and everything below it) is placed in the context of the group. The text object has two references that refer to values outside of the text object. The reference "group.position.x" refers to the the x component of the position of the group object. The text object will always behave the same way if it is placed in an identical "group" context. We can think of an object as a pure function and the references to the context it is in corresponds to the arguments of that pure function. So now if we change the position of the "group"  element then the text will follow and always be offset by \((20, 20)\)
     </p>
-    <img src="./specification/object-context/text-box-moved.svg" alt="text box moved in group" class="diagram" style="width:253px"/>
+    <object type="image/svg+xml" data="/whitepaper/specification/object-context/text-box-moved.drawio.svg" alt="Objects can have multiple attributes" class="diagram"></object>
     <p>
         We've now made these definitions dynamic but with this system "text" is not really isolated from "group" because the references still refer to "group" by name. It would be nicer if we could say that the position of "text" is relative to whatever it's parent element is. To solve this problem we can define a concept called an inverse attribute. In this case "parentElement" is the inverse attribute of "childElement"
     </p>
-    <img src="./specification/object-context/inverse-attributes.svg" alt="parentElement is inverse to childElement" class="diagram" style="width:566px"/>
+    <object type="image/svg+xml" data="/whitepaper/specification/object-context/inverse-attributes.drawio.svg" alt="Objects can have multiple attributes" class="diagram"></object>
     <p>
         With inverse attributes, the definition of "text" depends on the context it is in. Its parentElement can have any name but it must have a position with  x and y attributes. We can again think of text as a pure function with these references as arguments.
     </p>
@@ -44,6 +44,6 @@
     <p>
         So far, we have discussed how static lynx objects are structured and evaluated. They can also change in response to outside events and store data. We'll start with a simple, non-stateful example where the position of the text box is set to be the position of the user's mouse.  
     </p>
-    
+    <object type="image/svg+xml" data="/whitepaper/specification/object-context/mouse-move.drawio.svg" alt="Objects can have multiple attributes" class="diagram"></object>
 </div>
 

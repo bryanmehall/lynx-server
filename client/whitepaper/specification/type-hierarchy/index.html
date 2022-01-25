@@ -1,17 +1,16 @@
 <div>
     <h2 id="type-hierarchy">Type Hierarchy</h2>
-    Lynx should be thought of more as a specification language than a programming language because it is designed with an extra layer of abstraction that makes it possible to manipulate meta-data about programs. In Lynx, any concept is considered to be a subtype of something called LynxExpression. The type hierarchy is a partial order on the "is A" relationship on objects. This generally behaves in the same way as types in traditional languages. For example, 3 is A number that will be written with the notation 3:Number. For practical purposes in the subtyping partial order, LynxExpression is the single the greatest element. This is not strictly true because there is some machinery to avoid paradoxes so some of the details are suppressed here for clarity.  Instances of objects will be referred to as \(Atoms\) are the least elements of the type hierarchy. Other than their name, there is no distinction between instances and types in Lynx. For example, the number "3" is just a subtype of the type "number".
+    Lynx should be thought of more as a specification language than a programming language because it is designed with an extra layer of abstraction that makes it possible to manipulate meta-data about programs. In Lynx, any concept is considered to be a subtype of something called a Lynx Object. The type hierarchy is a partial order on the "is A" relationship on objects. This generally behaves in the same way as types in traditional languages. For example, 3 is A number that will be written with the notation 3:Number. For practical purposes in the subtyping partial order, Lynx Object is the single the greatest element. This is not strictly true because there is some machinery to avoid paradoxes so some of the details are suppressed here for clarity.  Instances of objects will be referred to as \(Atoms\) are the least elements of the type hierarchy. Other than their name, there is no distinction between instances and types in Lynx. For example, the number "3" is just a subtype of the type "number".
     Most languages have the distinction between types and values to draw a line between concepts that can be checked at compile time and then thrown away. This means that when using dependent types if we want to use the type Natural numbers to measure the length of the array then we would ordinarily need a natural number type for use at runtime and a natural number kind to use at compile time. Lynx instead allows for there to be no distinction between compile time and run time but forces expression evaluation to be typed to make sure that the correct information is being discharged at run time.
 
-    <embed  src="/whitepaper/specification/type-hierarchy/type-hierarchy.drawio.svg" type="image/svg+xml" class="diagram"></embed>
-
+    <object type="image/svg+xml" data="/whitepaper/specification/type-hierarchy/type-hierarchy.drawio.svg" alt="type hierarchy" class="diagram"></object>
     We can divide the type hierarchy into 4 general sections:
     <ol>
         <li>
-            <b>Lynx Expressions:</b> a kind of way of storing meta-data and relations between objects. In the type system, everything is a subtype of Lynx expression
+            <b>Lynx Objects:</b> a kind of way of storing meta-data and relations between objects. In the type system, everything is a subtype of Lynx Object
         </li>
         <li>
-            <b>Abstract Types:</b> types like product types, sum types and function types are defined in terms of lynx expressions and are therefore a subtype of lynx expressions.
+            <b>Abstract Types:</b> types like product types, sum types and function types are defined in terms of lynx expressions and are therefore a subtype of lynx objects.
         </li>
         <li>
             <b>Concrete Types:</b> numbers, strings lists, trees, etc. are subtypes of abstract types
@@ -27,6 +26,6 @@
             <li><b>dynamics: </b>specification for evaluating a well-formed program</li>
         </ol>
         Unlike most languages, Lynx does not have separate phases for write-time, type checking, compile-time and run-time. 
-        Therefore the dynamics are defined in such a way that at every step of evaluation the resulting program is also correct as defined by the statics. More formally, given a well-formed Lynx expression \(E\) and an evaluation event \(\mapsto\) the dynamics ensures that that the resulting Lynx expression \(E'\) is also well-formed for the evaluation expression \(E \mapsto E'\)
-    </p>
+        Therefore the dynamics are defined in such a way that at every step of evaluation the resulting program is also correct as defined by the statics. More formally, given a well-formed Lynx expression \(e\) and a computational event \(\mapsto\) the dynamics ensures that that the resulting Lynx expression \(e'\) is also well-formed for the evaluation expression \(e \mapsto e'\) 
+    </p>    
 </div>

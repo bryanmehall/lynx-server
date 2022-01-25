@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html>
+    <include src="head.html" locals='{"title": "Type Reduction"}'></include>
+    <body>
+        <include src="header.html"></include>
+        <div class="content">
+            <h1 class="blogTitle">Typed Evaluation</h1>
+            <div class="blog-metadata">23 December 2021 <i>&#8212; Bryan Mehall</i></div>
+            <p>
+               In the normal type-theory based formulation of programming languages, we would introduce a typing judgement like \[\frac{a:Nat \quad b:Nat}{\texttt{plus}(a,b):Nat}\] stating that addition of two natural numbers is a term of type natural number. In Lynx, we make a weaker claim. We say that (for total functions) addition can be equal to other expressions in type nat or can be evaluated in type nat but not that it is of type nat. 
+            </p>
+            <include src="development/blogfooter.html" locals='{
+                "previousTitle":"Higher Order Primitives", 
+                "nextTitle":null,
+                "previousLink":"higher-order-primitives",
+                "nextLink":null
+            }'></include>
+        </div>
+    </body>
+</html>

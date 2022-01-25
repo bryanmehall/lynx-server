@@ -11,6 +11,7 @@
     font-family: BaskervilleItalic;
     src: url(BaskervilleF-Italic.otf);
 }
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono&display=swap');
 body {
     font-family: 'Jost';
     font-weight: 350;
@@ -83,6 +84,7 @@ h5 {
 }
 .whitepaperContent {
     max-width: 700px;
+    overflow: hidden;
 }
 .outline {
     max-width:300px;
@@ -92,10 +94,32 @@ h5 {
 }
 .notes {
     max-width:300px;
+    width:100%;
+    padding-left:10px;
+    border-left:1.5px solid rgb(61, 124, 126);
+    position:relative;
+    left:20px;
+    display:none;
 }
 .def {
     font-family: BaskervilleItalic;
     color:rgb(61, 124, 126);
+}
+.parentvalue {
+    color: red;
+}
+.inverseattribute {
+    color: blue;
+}
+.thm {
+    font-style: italic;
+    color: rgb(96, 96, 96);
+    font-size: 15pt;
+    padding-top: 10px;
+}
+.code {
+    font-family:'Red Hat Mono', monospace;
+    font-size: 11pt;
 }
 .footer {
     margin: auto;

@@ -2,6 +2,30 @@
 <html>
     <include src="head.html" locals='{"title": "Whitepaper"}'></include>
     <body>
+        <script>
+            window.onload = () => { //this needs to work for mathjax elements too
+                document.querySelectorAll(".def")
+                .forEach((def)=>{
+                    def.addEventListener('click', (e) => {
+                        e.preventDefault()
+                        const notesDiv = document.getElementById('notes')
+                        const termNode = e.target
+                        const yOffset = termNode.getBoundingClientRect().top - notesDiv.getBoundingClientRect().top
+                        const asideId = `${termNode.href.substring(termNode.href.lastIndexOf('#') + 1)}-aside`
+                        const aside = document.getElementById(asideId).cloneNode(true)
+                        if (aside === null){
+                            console.warn(`no aside with id "${asideId}" found`)
+                        } else {
+                            aside.style.top = `${yOffset}px`
+                            aside.style.display = 'block'
+                            aside.classList.add('notes')
+                            notesDiv.appendChild(aside)
+                        }
+                        
+                    })
+                })
+            }
+        </script>
         <include src="header.html"></include>
         <div class= content>
             This is a working draft of the design rationale and formal specification of the Lynx Programming Language
@@ -49,11 +73,12 @@
                     <li><a href="#implementation">Part III &#8211; Implementation</a></li>
                     <ul>
                         <li>Metacircularity</li>
-                        <li>Persistance</li>
-                        <li>Primitives</li>
+                        <li><a href="#persistence">Persistance</a></li>
+                        <li><a href="#primitives">Primitives</a></li>
                         <li>Modules</li>
                         <li>Compilation</li>
                         <li>Parallelism</li>
+                        <li>Errors</li>
                         <li>Optimization</li>
                         <li>Approximation</li>
                     </ul>
@@ -73,12 +98,16 @@
                 <include src="./whitepaper/specification/type-hierarchy/index.html"></include>
                 <include src="./whitepaper/specification/lynx-expressions/index.html"></include>
                 <include src="./whitepaper/specification/abstract-types/types.html"></include>
+                <include src="./whitepaper/specification/concrete-types/index.html"></include>
                 <include src="./whitepaper/specification/type-equality/type-equality.html"></include>
                 <h1 id="implementation">Part III &#8211; Implementation</h1>
                 
                 <include src="./whitepaper/implementation/primitives.html"></include>
+                <include src="./whitepaper/implementation/persistence.html"></include>
             </div>
-            <aside class=notes>Informal notes or commentary will be on the right. Click on highlighted parts of the text for help with notation</aside>
+            <div id="notes">
+                <aside class=notes style="display:block;" >Informal notes or commentary will be on the right. Click on highlighted parts of the text for help with notation</aside>
+            </div>
         </div>
     </body>
 </html>

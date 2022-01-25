@@ -1,51 +1,112 @@
 <div>
-    <h2>Lynx Expressions</h2>
+    <h2>Lynx Objects</h2>
     <h3 id="statics">Statics</h3>
 
-    <h4 id="abstract-syntax">Abstract Syntax</h4>
-
-    <h5 id="lynx-expression">Lynx Expressions \((\mathcal{O})\)</h5>
-    \[LynxExpression ::= \left\{ a \: |\: a:( \link{#lynx-attribute}{Attribute}, LynxExpression) \right\}\]
+    <h5 id="lynx-expression">Lynx Objects \((\mathcal{O})\)</h5>
+    \[LynxObject ::= \left\{ a \: |\: a:( \link{#lynx-attribute}{Attribute}, LynxObject) \right\}\]
     <embed src="/whitepaper/specification/lynx-expressions/lynx-object.drawio.svg" alt="Structure of a Lynx Object" class="diagram"/>
-    <a href="#lynx-expression" class="def">Lynx expressions </a> consist of a set of mappings between an <a href="#lynx-attribute" class="def">attribute</a> and another Lynx expression. The definition is intentionally broad because they are designed to encapsulate the properties, metadata, and relations of any concept. They are the only first-class concepts in the lynx language. Note that Lynx expressions don't inherently contain any information. Their meaning is only derived by their relation to other lynx expressions. To highlight why this design decision is important we can use the concept of a function as an example. Something like a function that would normally be a first class object in a programming language is not in lynx because it would be missing important meta-data. Lynx expressions can capture the essential information about functions by defining an "argument" and a "result" attribute that can be used by the evaluator. The name of the function other meta-data can also be added as an attribute. The inverse of the function can be added as a relation. The structure of Lynx Expressions form a graph where the expressions are nodes and the attributes are edges. 
+    <aside id="lynx-object-aside" style="display:none;">
+        <span class="def">Lynx Objects</span> consist of a set of mappings between attributes and values
+    </aside>
+    <a href="#lynx-object" class="def">Lynx Objects </a> consist of a set of mappings between an <a href="#lynx-attribute" class="def">attribute</a> and another Lynx Object. The definition is intentionally broad because they are designed to encapsulate the properties, metadata, and relations of any concept. They are the only first-class concepts in the lynx language. Note that Lynx objects don't inherently contain any information. Their meaning is only derived by their relation to other objects. To highlight why this design decision is important, we can use the concept of a function as an example. Something like a function that would normally be a first class object in a programming language is not in lynx because it would be missing important meta-data. Lynx objects can capture the essential information about functions by defining an "argument" and a "result" attribute that can be used by the evaluator. The name of the function other meta-data can also be added as an attribute. The inverse of the function can be added as a relation. The structure of Lynx Objects form a graph where the objects are nodes and the attributes are edges. 
     <h5 id="lynx-attribute">Attributes</h5>
-    \[Attribute ::= \left\{ a \: |\: a:(Attribute, \link{#lynx-expression}{LynxExpression}) \right\}, \link{#lynx-property}{Property} \:|\: \link{#relation}{Relation}\]
-    Attributes are a subtype of lynx expressions. In most of the lynx expression graphs shown attributes are just edges for clarity but attributes can have their own attributes just like any lynx expression. These attributes of attributes can imply more structure like that the inverse of  <!--TODO: attributes can be composed (function composition) and extra information can be added (currying)-->
+    \[Attribute ::= \left\{ a \: |\: a:(Attribute, \link{#lynx-object}{LynxObject}) \right\}, \link{#lynx-property}{Property} \:|\: \link{#relation}{Relation}\]
+    Attributes are a subtype of Lynx Objects. In most of the lynx object graphs shown attributes are just edges for clarity but attributes can have their own attributes just like any lynx object. These attributes of attributes can imply more structure like that the inverse of  <!--TODO: attributes can be composed (function composition) and extra information can be added (currying)-->
+
     
-    <h5 id="lynx-object">Lynx Objects</h5>
-    \[LynxObject ::= \left\{ a \: |\: a:(\link{#lynx-property}{Property}, LynxObject \: | \: Atom \: | \: Reference) \right\}\]
-    Lynx objects are an inductively defined tree structure consisting of a mapping between a finite set of  <a href="#lynx-property" class="def">Properties</a> and corresponding <a href="#lynx-object" class="def">Lynx Objects</a>.
-    Lynx objects are useful for the serialization, analysis and storage of <a href="#lynx-expression" class="def">Lynx Expressions</a>. Should the name of lynx expressions and lynx objects be switched? Lynx objects can always be serialized and content addressed because they are non-cyclic by definition. This is covered in more detail in the Object Persistance specification. Lynx expressions can be simplified to Lynx objects with respect to certain properties. For the remainder of the whitepaper lynx objects will be denoted with the letter \(e\) with subscripts \(e_1, e_2 \) etc. to differentiate between unequal expressions. 
-    
+    <h5 id="lynx-expression">Lynx Expression \((e)\)</h5>
+    <aside id="lynx-expression-aside" style="display:none;">
+        <span class="def">Lynx Expressions</span> are like Lynx Objects but limited to a tree structure. They consist of a finite set of (property, LynxExpression) pairs. The tree structure is useful for the analysis and storage of parts of Lynx Objects. A Lynx Expression placed in a context \((\Gamma) \) forms a Lynx Object.
+    </aside>
+    \[LynxExpression ::= \left\{ a \: |\: a:(\link{#lynx-property}{Property}, LynxExpression \: | \: Atom \: | \: Reference) \right\}\]
+    Lynx Expressions are an inductively defined tree structure consisting of a mapping between a finite set of  <a href="#lynx-property" class="def">Properties</a> and corresponding <a href="#lynx-expression" class="def">Lynx Expressions</a>.
+    Lynx Expressions are useful for the serialization, analysis and storage of <a href="#lynx-object" class="def">Lynx Objects</a>.  Lynx expression can always be serialized and content addressed because they are non-cyclic by definition. This is covered in more detail in the Object Persistance specification. Lynx Objects can be simplified to Lynx Expressions with respect to certain properties. For the remainder of the whitepaper Lynx Expressions will be denoted with the letter \(e\) with subscripts \(e_1, e_2 \) etc. to differentiate between unequal expressions. 
+
+    <h5>Lynx Value \((v)\)</h5>
+    \[LynxValue ::= \left\{ a \: |\: a:(\link{#lynx-property}{Property}, LynxValue \: | \: Atom) \right\}\]
+    A Lynx Value is a subtype of a Lynx Expression where every property is also a Lynx Value. Lynx values are often used as the base case for evaluation rules.
     <h5>Context \(\left(\Gamma\right)\)</h5>
-    \[Context (\Gamma) ::= \{a \:|\: a:(Attribute, LynxExpression)\} \\ \text{such that} \quad Context \cup LynxObject = Lynx Expression\]
-    More informally, a Lynx object placed into a context forms a Lynx expression. The behavior of the object is a pure function of the context it is placed in. The set of references within a Lynx Object that depend on the context will be called arguments, and are discussed in more detail in the implementation section. 
+    \[Context (\Gamma) ::= \{a \:|\: a:(Attribute, LynxObject)\}\] such that \[Context \cup LynxExpression = Lynx Object\]
+    More informally, a Lynx Expression placed into a context forms a Lynx Object. The behavior of the expression is a pure function of the context it is placed in. The set of references within a Lynx Epression that depend on the context will be called arguments, and are discussed in more detail in the implementation section. 
     <h5 id="lynx-property">Properties</h5>
-    \[Property ::= \link{#lynx-object}{LynxObject}\]
+    \[Property ::= \link{#lynx-expression}{LynxExpression}\]
     A lynx property is a non-cyclic version of an attribute. It can not have relations to other properties or attributes.
     <h5 id="relation">Relations</h5>
-    \[Relation ::= \link{#lynx-expression}{Lynx Expression}\]
+    \[Relation ::= \link{#lynx-object}{Lynx Object}\]
     <h5 id="reference">Relative References</h5>
-    \[RelativeReference ::= \left\{(rootObject, root), (attribute, \link{#attribute}{Attribute}) \right\}\]
+    \[RelativeReference ::= \left\{(rootObject, Root), (attribute, \link{#attribute}{Attribute}) \right\}\]
     where
-    \[root = \link{#lynx-object}{LynxObject} \:| \: RelativeReference \: | \: \link{#local-reference}{LocalReference} \: | \: \link{global-reference}{GlobalReference}\]
+    \[Root = \link{#lynx-object}{LynxObject} \:| \: RelativeReference \: | \: \link{#local-reference}{LocalReference} \: | \: \link{global-reference}{GlobalReference}\]
     \(rootObject:Attribute\) and \(attribute:Attribute\) 
-    Relative references are just lynx objects with two essential attributes. The \(rootObject\) attribute refers to the 
+    Relative references are just lynx expression with two essential attributes. The \(rootObject\) attribute refers to the object to get \(attribute\) with respect to. For example, if we want to get the \(length\) attribute of a string then string would be the rootObject, length would be the attribute and the reference would have the text notation <span class="code">string.length</span>
+    \[\frac{\Gamma \vdash Root:\tau_1 \quad \tt{Attribute}:\tau_1\rightarrow \tau_2}{\class{code}{Root.Attribute}:\tau_2}\]
     <h5 id="local-reference">Local References</h5>
     \[LocalReference ::= (Query, String)\]
     <h5 id="global-reference">Global References</h5>
     \[GlobalReference ::= (Query, String)\]
-    <h5>Value</h5>
-    \[Value ::= \left\{ a \: |\: a:(Property, LynxObject \: | \: Atom) \right\}\]
-    A value is a specific form of a lynx object without any references so it is fully constrained within its type. We will use the symbol \(v\) to denote a values. 
-
+    <h5>Events \((\mapsto)\)</h5>
+    <h4>Context Splitting</h4>
+    Lynx Objects are the composition of a Lynx Expression and some context, but to be able to store and analyze Lynx Expressions there also must be a process for decomposing a Lynx Object into a Lynx Expression and a context. Lynx Objects are a possibly infinite set of \((\link{#lynx-object}{LynxObject}, \link{#attribute}{Attribute})\) pairs. 
+    <ul>
+        <li>parameterize attributes</li>
+        <li>split attributes so properties are part of the expression and non essential relations are in the context </li>
+    </ul>
     <h3 id="dynamics">Dynamics</h3>
-    The statics of a program 
+    Objects in Lynx are connected by attributes, but to be able to do computation we need to add a few concepts. The big idea is that the program we are running and the result we are trying to arrive at already exist in the interconnected graph of objects and we only need to move from the definition to the result. 
     We will present two equivalent ways of specifying the evaluation of lynx programs. Structural Dynamics vs Evaluation Dynamics
-    The structural dynamics detail the individual evaluation steps. We have not specified the lynx event system yet but each evaluation step is an evaluation event.
+    The structural dynamics detail the individual evaluation steps. We have not specified the lynx event system yet but each evaluation step is a computation event.
     <h4>Structural Dynamics</h4>
-    <embed src="/whitepaper/specification/lynx-expressions/local-reference-eval.drawio.svg" alt="Evaluation of local reference node" class="diagram"/>
+    The structural dynamics for <a href="#lynx-expression" class="def">Lynx Expressions</a> are defined in terms of computation events of the form \(e_1 \mapsto_\tau e_2\) where \(e_1\) is the initial expression, \(\mapsto\) is the computation event, \(\tau\) is the type in which \(e_1\) is being evaluated in, and \(e_2\) is the resulting expression. For this section we will only be concerned with evaluating <a href="#lynx-expression" class="def">Lynx Expressions</a> in the type <a href="#lynx-expression" class="def">Lynx Expression</a>. Computation events can be grouped together sequentially to form more complex computation events: \(e_1 \mapsto e_2 =_\mapsto e_1 \mapsto e_{1a} \mapsto e_{1b} \mapsto e_2\). Multiple computation events in sequence is denoted by \(\mapsto^*\). 
+    <h4>Safety</h4>
+    To ensure that the program will not encounter any illegal state at runtime, We introduce the concept of safety with two principles: Preservation and progress. 
+    <div class="thm">Preservation</div>
+    If a we have a lynx expression \(e_1:\tau\) and we want to evaluate \(e_1\) in type \(\tau\) to form another expression \(e_2\) \((e_1 \mapsto_\tau e_2)\) then we want to ensure that \(e_2:\tau\)
+    <!--add proof-->
+    <div class="thm">Progress</div>
+    If \(e_1:\tau\) then either \(e_1\) is a value in type \(\tau\) or \((e_1 \mapsto_\tau e_2)\). Together, these principles ensure that the program can never enter an illegal state. 
+    <!--add proof-->
+    <div class="thm">Coherence</div>
+    We want to ensure that evaluating a given expression at the <a href="#lynx-expression" class="def">Lynx Expression</a> level will have the same type as evaluating it in a subtype. 
+    <div class="thm">Canonicity</div>
+    Discussed in more detail in the Canonicity section.
+
+    -cost of events
+    -isomorphism to result attribute
+    -keep track of definitions
+    <h4>Attribute Application</h4>
+    Now we will define a computational event called \(\text{apply}\) that transitions from one <a href="#lynx-expression" class="def">Lynx Expression</a> to another with respect to a certain attribute. If we have an expression \(e_1\) then we can use \(\text{apply}\) to create another expression \(e_2\) where \(e_2 = \text{apply}(e_1, \text{attribute})\) The expression \(e_2\) contains some extra information including <span class="def inverseattribute">inverseAttributes</span> and <span class="def parentvalue">parentValue</span>. This transition is shown with the following Lynx Expression graph.  
+    <object type="image/svg+xml" data="/whitepaper/specification/lynx-expressions/apply.drawio.svg" alt="Evaluation of local reference node" class="diagram"></object>
+    <p>
+        The red arrow is for a special attribute called <span class="def parentvalue">parentValue</span>. These parentValue attributes effectively keep track of which way is "up" in the object graph. This is used for determining which named  references (called localSearch in the code base) are within scope.  In the text example "text" and "graph" were in scope for the references because there were implicit parentValue attributes that led from the reference to the text and graph objects. ParentValue doesn't affect the behavior of apply and will be discussed more formally in the evaluation semantics for references.
+    </p>
+    <p>
+        The \(\text{apply}\) computational event has a few important properties: reversibility, attribute selection, and composability
+    </p>
     
+    <div class="thm">Reversibility</div>
+    <p>
+        Every evaluation step is reversible. If we have an expression \(e_2\) defined as \(e_2 =_\mathcal{O} \text{apply}(e_1, \text{attribute})\) and an attribute that is inverse to \(\text{attribute}\) called \(\text{inverseAttribute}\) then we can say \(e_1 =_\mathcal{O} \text{apply}(e_2, \text{inverseAttribute})\)
+    </p>
+    <object type="image/svg+xml" data="/whitepaper/specification/lynx-expressions/apply-reversibility.drawio.svg" alt="Evaluation of local reference node" class="diagram"></object>
+    Notice that the structure of \(e_1\) is not the same as it was originally but its computational behavior will be the same. If we apply \(\text{attribute}\) to \(e_1\) again, it will have an identical structure as \(e_2\). To maintain this property, parentValue attributes are always added pointing toward original position of the cursor before any evaluation steps are taken and are not added when following an inverse attribute. We keep track of this orientation by defining an attribute as inverse when it is pointing up. This way if we are evaluating an inverse attribute we know the cursor is moving up the tree and if we are evaluating a normal attribute then the cursor is moving down the tree. Not every attribute has an inverse so we add an implied inverse attribute called "parentValue" to every evaluation step where we are moving down the tree. We don't add it when an evaluation step moves up the tree to keep the reversibility requirement.
+
+    <div class="thm">Attribute Selection</div>
+    In the examples so far the object only has one attribute. If we have an object with two attributes called attribute1 and attribute2 then the evaluation function can select which attribute it follows.  In the diagram below it evaluates attribute1 but it could also evaluate attribute2. In the general case it can evaluate any attribute of the cursor object. 
+    <object type="image/svg+xml" data="/whitepaper/specification/lynx-expressions/apply-selection.drawio.svg" alt="Evaluation of local reference node" class="diagram"></object>
+    <div class="thm">Composability</div>
+    <object type="image/svg+xml" data="/whitepaper/specification/lynx-expressions/apply-compose.drawio.svg" alt="Evaluation of local reference node" class="diagram"></object>
+    <h4>Reference Evaluation</h4>
+    <p>
+        To evaluate references let there be a computational event \(\text{evaluate}\) that transitions a Lynx Expression  with the cursor on a reference node to another lynx expression. The "evaluate" computational event is a subtype of the "apply" computational event where the attribute parameter of apply is subclassed with the "result" attribute. The result attribute indicates simplification of an expression and has in inverse called "definition".
+    </p> 
+    <p> 
+        Before we can define \(\text{evaluate}\) we need to go into more detail on the structure of reference objects. (in the code base they are sometimes called "get objects") The concise text representation of a reference that we saw before is "text.position" where we are searching for the object "text" by name and then referring to its "position" attribute. These references can be chained so "text.position.x" refers to the x-component of the position of the text. To generalize, the reference "object.attribute" is the text representation for a reference where "object" is the object to be searched for by name and "attribute" is the attribute to follow from object. Objects can be searched for by name within their context. 
+    </p>
+    <p>
+        References are just Lynx objects. They have  an attribute "rootObject" and an attribute "attribute". LocalSearch objects have an attribute "query" that is matched against objects in its scope. The object diagram for the reference "object.attribute" looks like this: 
+    </p>
+    <object type="image/svg+xml" data="/whitepaper/specification/lynx-expressions/local-reference-eval.drawio.svg" alt="Evaluation of local reference node" class="diagram"></object>
+    <object type="image/svg+xml" data="/whitepaper/specification/lynx-expressions/relative-reference-evaluation.drawio.svg" class="diagram"></object>
     <h4>Evaluation Dynamics</h4>
 </div>
 

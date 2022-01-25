@@ -1,0 +1,6 @@
+<div>
+    <h3 id="persistence">Persistence</h3>
+    <p>
+        Each object in lynx is identified with a hash. Informally, the hash of an object is calculated by recursively hashing all of the child nodes of the current object. Let \(H: \text{LynxObject} \rightarrow \{0,1\}^n\) be a cryptographic hash function The hash of a node is just the result of hashing its children together to form an unbalanced Merkle tree. Starting at the bottom of the tree we apply a the hash function \(H\) to the values 20, 30 and "text" respectively.  Prepend leaf nodes with a 0x00 byte and internal nodes with a 0x01 byte to prevent a second preimage attack. <!--https://crypto.stackexchange.com/questions/2106/what-is-the-purpose-of-using-different-hash-functions-for-the-leaves-and-interna -->
+    </p>
+</div>
