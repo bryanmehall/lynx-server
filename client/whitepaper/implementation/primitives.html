@@ -4,6 +4,8 @@
     </p>
     <h2>Primitives</h2>
     <p>
-        The most basic way the implementation and the specification are separated is with the concept of primitives. A specification for a basic building block of computation serves as the denotational semantics for an underlying language feature that does the actual computation. For example, we could define a type in lynx for 32 bit unsigned integers as a list of binary digits with length 32. We can then define a webAssembly uint32 as a primitive for this type. The primitive states without proof (but with tests) that the specification for a uint32 has a one-to-one correspondence with a webassembly uint32. The compiler can then decide to use the webassembly uint32 as an optimization. In practice, this is how all computation in lynx is done.
+        The most basic way the implementation and the specification are separated is with the concept of primitives. A specification for a basic building block of computation serves as the denotational semantics for an underlying language feature that does the actual computation. For example, we could define a type in lynx for 32 bit unsigned integers as a list of binary digits with length 32. We can then define a WebAssembly <span class="code">uint32</span> as a primitive for this type. The primitive states without proof (but with tests) that the specification for a <span class="code">uint32</span> has a one-to-one correspondence with a WebAssembly <span class="code">uint32</span>. The compiler can then decide to use the WebAssembly <span class="code">uint32</span> as an optimization. In practice, this is how all computation in Lynx is done.
     </p>
+    <object type="image/svg+xml" data="/whitepaper/implementation/uint32-primitives.drawio.svg" class="diagram"></object>
+    
 </div>

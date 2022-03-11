@@ -121,6 +121,12 @@ h5 {
     font-family:'Red Hat Mono', monospace;
     font-size: 11pt;
 }
+.codelink {
+    font-family:'Red Hat Mono', monospace;
+    font-size: 14pt;
+    color: rgb(61, 124, 126);
+    cursor:pointer;
+}
 .footer {
     margin: auto;
     padding-top: 30px;

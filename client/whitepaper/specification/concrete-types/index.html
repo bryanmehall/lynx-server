@@ -1,7 +1,66 @@
 <div>
     <h2>Concrete Types</h2>
     <h3>Type Equality</h3>
+    <p>
+        Type systems are used to improve the correctness of code by preventing programmers from using pre-built abstractions in a way they were not designed for. The big question we should be asking for determining if two types are equal is "Can these two types be used interchangeably without breaking anything?" Notice that this question is about behavior of the types not the structure of the types. Most formal type systems including ADTs focus on comparing structures but two types can have the same structure and not be interchangeable without more information or they can be interchangeable but have different structure. Let's go back to the example of a coordinate point to look at interchangeability.
+    </p>
+    <p>
+        2D coordinate points can be represented as cartesian or polar coordinates.
+    </p>
+    <object type="image/svg+xml" data="/whitepaper/specification/concrete-types/cartesian-polar.drawio.svg" class="diagram"></object>
+    <p>
+        Both of these coordinate points are pairs of numbers so they have the same algebraic data type but with ADTs there isn't any information about how to actually interchange between the two types. Let's define two functions:
+        <ol>
+            <li>
+                \(\text{CartesianToPolar}: \text{CartesianPoint} \rightarrow \text{PolarPoint} \)<br>
+                \(\text{CartesianToPolar} = (x,y) \rightarrow (\arctan(y/x), \sqrt{x^2+y^2})\)
+
+            </li>
+            <li>
+                \(\text{PolarToCartesian}: \text{PolarPoint} \rightarrow \text{CartesianPoint} \)<br>
+                \(\text{PolarToCartesian} = (r,\theta) \rightarrow (r\cos(\theta),r\sin(\theta))\)
+            </li>
+        </ol>
+        These functions can be used to convert between the two types of coordinate points. 
+    </p>
+    <object type="image/svg+xml" data="/whitepaper/specification/concrete-types/isomorphism.drawio.svg" class="diagram"></object>
+    <p>
+        This is where the concept of interfaces in languages like C++ leaves the correctness of these functions to the programmer. Interfaces make no guarantees that the types are actually interchangeable.
+    </p>
+    <p>
+        To ensure that the two types are equal we need to make sure that for every element of a type we can not only convert it to the equivalent type but we can convert it back to the same element. This forces the conversion function to work for every edge case. For example, if we want to convert the polar coordinate point \((1, 450^\circ)\)...
+        To show this we need the identity functions or both polar and cartesian coordinate points:
+        <ol start="3">
+            <li>
+                \(\text{id}_{\text{CartesianPoint}}: \text{CartesianPoint} \rightarrow \text{CartesianPoint} \)<br>
+                \(\text{id}_{\text{CartesianPoint}} = (x, y) \rightarrow \left(\text{id}_{\text{number}}(x), \text{id}_{\text{number}}(y)\right) \)
+            </li>
+            <li>
+                \(\text{id}_{\text{PolarPoint}}: \text{PolarPoint} \rightarrow \text{PolarPoint} \)<br>
+                \(\text{id}_{\text{PolarPoint}} = (r, \theta) \rightarrow \left(\text{id}_{\text{number}}(r), \text{id}_{\text{number}}(\theta)\right) \)
+            </li>
+        </ol>
+        
+    </p>
+    <p>
+        Next we need to show that each identity function is equal to the corresponding composition of the coercion functions.
+        <ol start="5">
+            <li>
+                \(\text{id}_{\text{CartesianPoint}} =_\rightarrow \text{CartesianToPolar}\circ\text{PolarToCartesian} \)<br>
+            </li>
+            <li>
+                \(\text{id}_{\text{PolarPoint}} =_\rightarrow \text{PolarToCartesian}\circ\text{CartesianToPolar} \)<br>
+            </li>
+        </ol>
+    </p>
+    \(\text{PolarToCatresian}(\text{CartesianToPolar}(x,y)) =_{cp} \left(\sqrt{x^2+y^2}\cos(\arctan\left(\frac{y}{x}\right), \sqrt{x^2+y^2}\sin(\arctan(\frac{y}{x})\right) =_{cp} (x, y) \)
+
+    </p>
+    Use type indexed family of types equality example too. ie. \(seq(if(n_1, n_2)(a)) =_{seq(Nat)}if(seq(n_1), seq(n_2))(a)\) where \(n_1:Nat, n_2:Nat, a:Bool\)
+    
     <h3>Canonicity</h3>
+    <h3>Transport</h3>
     <h3>Inheritance</h3>
     <h4>Subsumption Principle</h4>
+
 </div>

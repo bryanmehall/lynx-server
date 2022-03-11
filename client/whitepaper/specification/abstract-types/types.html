@@ -1,60 +1,5 @@
 <div>
     <h2>Abstract Types</h2>
-    In most languages, abstract types like sum types, product types and function types are first class concepts but in lynx they are subtypes of Lynx expressions. The meaning of the abstract types is given by their behavior upon evaluation. We will start with the simplest abstract types and then work towards the most general abstract types.
-    A brief note on notation. \(a:A\) means a is a subtype of A.
-    <h3 id="atom">Atoms</h3>
-    \[Atom_\tau ::= \{...\} \:| \:\{a \:|\: a:(Attribute^*_\tau, Atom_\tau), ...\}\]
-    Atoms (sometimes called unit types in other languages) are the building blocks of all abstract types in Lynx. They can be considered objects with no additional information. Any single concept you can think of is an atom. For example, the number zero is an atom. So is the number "3" , the letter "a" or the boolean "true". More complicated data structures like the entire friend connection graph on a social network at any given instant are also an atom. Any concept where there is exactly one of that type can be considered an atom with respect to its own type. 
-    In Lynx, Atoms are just objects with no essential information. They can have meta-information and relations to other objects but this information can not change the meaning of the atom. We can form the following typing judgements for atoms:
-    <div class="thm">Atomic Reflexivity</div>
-    \[\frac{a: Atom_\tau}{a =_\tau a}\] What does it mean for it to be an atom in type tau? Do we want to say \(a:Atom \quad a:\tau\) or do we want to say that an object can be an atom in one type but not in another? ie. \(Nat = Zero | One | Two |Three...\) this would correctly make the statement \(Three:successor(Nat)\) 
-    We can say that any two atoms of the same type that are definitionally equal to each other are equal to each other in the same type. This pattern is essential for reducing global complexity of code and its power will be more apparent when we introduce more complex types. If we have two developers working on the same concept without the knowledge of the other, this offers a mechanism to essentially merge the two concepts into one and ensure the correctness of all dependent code. We will start with a simple case of this for atoms and add more complex cases with more complex types.
-    
-    <div class="thm">Atomic Equality</div>
-    \[\frac{a:Atom_\tau \quad b:Atom_\tau \quad a\equiv_\tau b}{a =_\tau b}\]
-
-    An atom is an empty Lynx Object with no properties. Atoms form the leaves of Lynx Object trees. For example, The number is zero is an atom in the type of natural numbers. 
-    How do lynx objects handle atoms and what do they look like? How do we formalize the transformation of a lynx expression into a lynx object?
-    <h3>Binary Sum Types</h3>
-    \[BinarySum ::=  \{(element_1, a:\link{lynx-expression}{LynxExpression}),(element_2, b:\link{lynx-expression}{LynxExpression}), ...\}\]
-    While any concept in lynx can be represented as an Atom, programs constructed only from atoms would lack any structure. Let's first look at an example of a sum type of atoms. If we have two atoms called \(True\) and \(False\) then we can define a type called \(Boolean\) defined as \(Boolean = True \:|\: False\). If instances of the type \(Atom\) are defined as having exactly one possible value then the binary sum of two atoms has \(1+1 = 2\) inhabitants. This is where the name sum type comes from.
-    
-    Are Sum types defined as pattern matching on attributes? (we can say \(zero : nat\) and successor(nat) : nat. 
-    nat = sumtype(zero, succ(nat))
-    zero:nat, one:nat one:succ(zero) these don't need to be minimal but they do need to be consistent...What is the implementation of this and of the function search?
-    Sum types are expressed in terms of the isA relation. We will use the natural numbers as an example. We can say that \(zero\) isA naturalNumber and we can say that for any natural number \(n\), \(n\).successor is a natural number. As alluded to in the design section, Lynx has a mechanism for programers to generalize concepts over time and simplify the program
-    <object type="image/svg+xml" data="/whitepaper/specification/abstract-types/least-judgements.drawio.svg" class="diagram"></object>
-    <div class="thm">Tagged Union Redundant Element Elimination </div>
-    If the intersection of \(e_1\) and \(e_2\) is non-empty then 
-    <div class="thm">Tagged Union Redundant Element Coherence </div>
-    If a type \(\tau\) is defined as a tagged union of two other elements \(e_1\) and \(e_2\) then for every element \(a \in e_1\) and \(b \in e_2\) in the intersection of \(e_1\) and \(e_2\), \(a=_\tau b\)
-    <h3>Binary Product Types</h3>
-    \[BinaryProduct ::= \{(element_1, a:\link{lynx-expression}{LynxExpression}),(element_2, b:\link{lynx-expression}    {LynxExpression}), ...\}\]
-    Binary Product types are defined with essential attributes on lynx objects so the product type \[\frac{a:LynxExpression \quad b:LynxExpression}{a \times b : }\]
-    Product types can be subtyped to be atoms with the rule:
-    \[\frac{a:Atom \quad b:Atom}{a\times b:Atom}\]
-    This intuitively makes sense because an atom has one possible value so the product of two atoms is \(1\times1 = 1\) so it also has one possible value.
-
-    <h3>Function Types \((\rightarrow)\)</h3>
-    there should be a way to search for attributes. If we have an object \(a:A\) then for any function \(f:A \rightarrow B\) there should be an attribute-value pair \((f,b)\) on any Lynx Object of type \(A\) where \(b:B\)
-    <h4>Isomorphism with attribute type</h4>
-    <h4>Partial function interpretation </h4>
-    Partial functions are denoted with the \(\rightharpoonup \) symbol. 
-
-    <h3>Dependent Product Types \((\Pi)\)</h3>
-    \[\prod_{x:A} B(x)\]
-    Dependent product types are a generalization of functions and Product types
-    As a generalization of product types: If we want to make the product type handle more than two inputs then we can rename the types in \(A \times B \times C...\) to \(\tau_0 \times \tau_1 \times \tau_2... \times \tau_i\) and restrict I to be a range of natural numbers \([0, i] = \{0, 1, 2, ...i\}\) then \[\tau_1 \times \tau_2... \times \tau_i =_\Pi \prod_{[0, i]} \tau_i\]
-    <!--https://cs.stackexchange.com/questions/81112/why-product-type-is-a-dependent-sum-->
-    As a generalization of function types: 
-    <h4>attribute interpretation</h4>
-    <h3>Dependent Sum Types \((\Sigma)\)</h3>
-    \[\sum_{x:A} B(x)\]
-    <h3>Subset Types</h3>
-    For example, if we have 
-    <h3>Quotient Types</h3>
-    
-    <h2 id="types">Types</h2>
     <p>
         Types are used to constrain the behavior of programs and, when they are well-formed, ensure correctness within the boundaries of the type system. In some dynamically typed languages like javascript or python the typing is considered "weak" because there are very few rules about which objects can be used in which places. This is often seen as a feature because it is less confusing for beginners writing simple programs.
     </p>
@@ -65,10 +10,127 @@
         <ul>
             <li>Problem #1: Types specify structure not behavior</li>
             <li>Problem #2: Equal types are not necessarily interchangeable</li>
-            <li>Problem #3:  Data can only be an instance of a single type</li>
         </ul>
     </p>
-    
+    <p>
+        In most languages, abstract types like sum types, product types and function types are first class concepts but in lynx they are subtypes of Lynx Expressions. The meaning of the abstract types is given by their behavior upon evaluation. We will start with the simplest abstract types and then work towards the most general abstract types.
+        A brief note on notation. \(a:A\) means a is a subtype of A.
+    </p>
+    <h3 id="atom">Atom Type \((\bullet)\)</h3>
+    \[Atom_\tau ::= \{...\} \:| \:\{a \:|\: a:(Attribute^*_\tau, Atom_\tau), ...\}\]
+    Atoms (sometimes called unit types in other languages) are the building blocks of all abstract types in Lynx. They can be considered objects with no additional information. Any single concept you can think of is an atom. For example, the number zero is an atom. So is the number "3" , the letter "a" or the boolean "true". More complicated data structures like the entire friend connection graph on a social network at any given instant are also an atom. Any concept where there is exactly one of that type can be considered an atom with respect to its own type. 
+    In Lynx, Atoms are just objects with no essential information. They can have meta-information and relations to other objects but this information can not change the meaning of the atom. We can form the following typing judgements for atoms:
+    <div class="thm">Atomic Reflexivity</div>
+    \[\frac{a: Atom_\tau}{a =_\tau a}\] 
+    <p>
+        What does it mean for it to be an atom in type tau? Do we want to say \(a:Atom \quad a:\tau\) or do we want to say that an object can be an atom in one type but not in another? ie. \(Nat = Zero | One | Two |Three...\) this would correctly make the statement \(Three:successor(Nat)\) 
+        Also, what does it mean for an element to be of type atom? Can we write \(3:\bullet\)? This would imply that the atom type itself has an infinite number of elements. 
+    </p>
+    <p>
+        We can say that any two atoms of the same type that are definitionally equal to each other are equal to each other in the same type. This pattern is essential for reducing global complexity of code and its power will be more apparent when we introduce more complex types. If we have two developers working on the same concept without the knowledge of the other, this offers a mechanism to essentially merge the two concepts into one and ensure the correctness of all dependent code. We will start with a simple case of this for atoms and add more complex cases with more complex types.
+    </p>
+
+    <div class="thm">Atomic Equality</div>
+    \[\frac{a:Atom_\tau \quad b:Atom_\tau \quad a\equiv_\tau b}{a =_\tau b}\]
+
+    An atom is an empty Lynx Object with no properties. Atoms form the leaves of Lynx Expression trees. For example, The number is zero is an atom in the type of natural numbers. 
+    How do lynx objects handle atoms and what do they look like? How do we formalize the transformation of a lynx expression into a lynx object?
+    <h3>Empty Type \((\bot)\)</h3>
+
+    <h3>Binary Sum Types \((+)\)</h3>
+    \[BinarySum ::=  \{(element_1, a:\link{lynx-expression}{LynxExpression}),(element_2, b:\link{lynx-expression}{LynxExpression}), ...\}\]
+    <p>
+        While any concept in Lynx can be represented as an Atom, programs constructed only from atoms would lack any structure. Let's first look at an example of a sum type of atoms. If we have two atoms called \(True\) and \(False\) then we can define a type called \(Boolean\) defined as \(Boolean = True \:|\: False\). If instances of the type \(Atom\) are defined as having exactly one possible value then the binary sum of two atoms has \(1+1 = 2\) inhabitants. This is where the name sum type comes from.
+    </p>
+    <h4>Pattern Matching</h4>
+    <p>
+        If the natural numbers are defined as \(Nat = Zero | successor(Nat)\) then we can define addition of natural numbers as a function \[\begin{aligned}Add:(Nat, Nat)& \rightarrow Nat\\ Add(Zero, n)& = n \\Add (succ(x), y)&= Add(x, y.succ) \end{aligned}\]
+        Coverage checking is ensuring that when subtyping is done by choosing an element of a sum type, then all elements of the sum type must be covered. 
+    </p>
+    <p>
+        Are Sum types defined as pattern matching on attributes? (we can say \(zero : nat\) and successor(nat) : nat. 
+        nat = sumtype(zero, succ(nat))
+        zero:nat, one:nat one:succ(zero) these don't need to be minimal but they do need to be consistent...What is the implementation of this and of the function search?
+
+        Sum types are expressed in terms of the isA relation. We will use the natural numbers as an example. We can say that \(zero\) isA naturalNumber and we can say that for any natural number \(n\), \(n\).successor is a natural number. As alluded to in the design section, Lynx has a mechanism for programers to generalize concepts over time and simplify the program
+    </p>
+   
+    <object type="image/svg+xml" data="/whitepaper/specification/abstract-types/least-judgements.drawio.svg" class="diagram"></object>
+
+    \(\tau_1 | \tau_2 | \tau_3 \neq \tau_1 | (\tau_2 | \tau_3)\)
+    Exhaustiveness checking is different for these cases... but is the exhaustiveness checking then the same for the parenthesized type? Is there actually an isomorphism there? 
+    <div class="thm">Tagged Union Redundant Element Elimination </div>
+    If the intersection of \(e_1\) and \(e_2\) is non-empty then 
+    <div class="thm">Tagged Union Redundant Element Coherence </div>
+    If a type \(\tau\) is defined as a tagged union of two other elements \(e_1\) and \(e_2\) then for every element \(a \in e_1\) and \(b \in e_2\) in the intersection of \(e_1\) and \(e_2\), \(a=_\tau b\)
+
+    <h3>Binary Product Types \((\times)\)</h3>
+    \[BinaryProduct ::= \{(element_1, a:\link{lynx-expression}{LynxExpression}),(element_2, b:\link{lynx-expression}    {LynxExpression}), ...\}\]
+    Binary Product types are defined with essential attributes on lynx objects so the product type \[\frac{a:LynxExpression \quad b:LynxExpression}{a \times b : }\]
+    <div class="thm">Atom Product Subtyping</div>
+    Product types can be subtyped to be atoms with the rule:
+    \[\frac{a:Atom \quad b:Atom}{a\times b:Atom}\]
+    This intuitively makes sense because an atom has one possible value so the product of two atoms is \(1\times1 = 1\) so it also has one possible value.
+    <div class="thm">Element Product Subtyping</div>
+    \[\frac{a:\tau_1}{a\times\tau_2:\tau_1\times\tau_2 }\]
+    <div class="thm">Binary Product Equality</div>
+    \[\frac{a_0=_{\tau_0}a_1 \quad b_0=_{\tau_1}b_1}{a_0\times b_0=_{\tau_1\times\tau_2}a_1 \times b_1}\]
+    <div class="thm">Binary Product Evaluation</div>
+    \[\frac{e_0 \Downarrow_{\tau_0} v_0 \quad e_1 \Downarrow_{\tau_1} v_1}{e_1 \times e_2 \Downarrow_{\tau_0 \times \tau_1} v_0 \times v_1}\]
+    <h3>Function Types \((\rightarrow)\)</h3>
+    \[Function ::= \{(element_1, a:\link{lynx-expression}{LynxExpression}),(element_2, b:\link{lynx-expression}    {LynxExpression}), ...\}\]
+    there should be a way to search for attributes. If we have an object \(a:A\) then for any function \(f:A \rightarrow B\) there should be an attribute-value pair \((f,b)\) on any Lynx Object of type \(A\) where \(b:B\)
+    <h4>Partial function interpretation </h4>
+    Partial functions are denoted with the \( \partialfunction \) symbol. 
+
+    <h3>Dependent Product Types \((\Pi)\)</h3>
+    \[\prod_{x:A} B(x)\]
+    Dependent product types are a generalization of functions and Product types
+    The Binary Product type is a subtype of the Dependent Product type by restricting \(A=0|1\), \(B(0)= \tau_0\), \(B(1)= \tau_1\)
+    then \[\prod_{x:(0|1)} B(x) =_\Pi \tau_0 \times \tau_1\]
+    As a generalization of product types: If we want to make the product type handle more than two inputs then we can get the finitary product \(\tau_0 \times \tau_1 \times \tau_2... \times \tau_i\) by restricting an index variable I to be a range of natural numbers \(I = [0, i] = \{0, 1, 2, ...i\}\) then \[\tau_1 \times \tau_2... \times \tau_i =_\Pi \prod_{[0, i]} \tau_i\]
+    <!--https://cs.stackexchange.com/questions/81112/why-product-type-is-a-dependent-sum-->
+    As a generalization of function types:
+    \[A \rightarrow B =_\Pi \prod_A B\]
+    Because using binary product types as dependant functions is common in lynx we will use the notation \(a:A \rightarrow B(a)\) to write a function where the type of the output \(B\) is dependent on the variable \(a\) that is of type \(A\). 
+    <h4>Isomorphism with attributes</h4>
+    Predicates like nonzero denominator for division, <span class="code">uint32</span> operators being defined in the range \(0-2^{32}\)
+    Parameterized attributes like array indexing-- How is this related to currying? 
+    Matrix indexing is just a family of functions ranging over (Nat, Nat) pairs
+    <h3>Dependent Sum Types \((\Sigma)\)</h3>
+    \[\sum_{x:A} B(x)\]
+    In a similar pattern to the product type, the Binary Sum type is a subtype of the Dependent Sum type by restricting \(A=0|1\), \(B(0)= \tau_0\), \(B(1)= \tau_1\)
+    then \[\sum_{x:(0|1)} B(x) =_\Sigma \tau_0 + \tau_1\]
+    The Dependent sum type is also a generalization of the binary product type:
+    \[A \times B = \underbrace{B + B + \cdots + B}_{A}\]
+
+
+
+    <h3>Subset Types</h3>
+    For example, if we have 
+    <h3>Quotient Types</h3>
+    <h3>Equality Types \((=)\)</h3>
+
+    subsingleton type. It is atom(unit) if inhabited and void if not inhabited. 
+    Path types, Id types
+    We want to have two types of equality that are both type dependent: definitional equality and a form of evidence based equality. 
+    <div class="thm">Equality Introduction</div>
+    \[\frac{\begin{aligned}a&:A \\ b&:B \\A, B&:\tau\\x&:A \rightarrow B \\ y&:B \rightarrow A\\ x.y &=_\rightarrow id(a) \\ y.x &=_\rightarrow id(b)\end{aligned}}{a=_\tau b}\]
+    Notice that to generate equality of types, in the last two we rely on equality of dependent functions. 
+    <div class="thm">Coercion?</div>
+    \[\frac{a=_{\tau_0} b \quad a.x:\tau_1 \quad b.x:\tau_1}{a.x \mapsto_{\tau_1}}\]
+    <div class="thm">Equality Consistency (capping?)</div>
+    \[\frac{a=_{\tau_0} b \quad a.x:\tau_1 \quad b.x:\tau_1}{a.x=_{\tau_1} b.x}\]
+    <object type="image/svg+xml" data="/whitepaper/specification/abstract-types/capping.drawio.svg" class="diagram"></object>
+    <h4>Predicated Equality</h4>
+    <h4> Partial Equality</h4>
+    <h4>Examples</h4>
+    <h5>Equality of Natural Numbers with Unsigned Ints</h5>
+    We can define the Natural Numbers as \(Nat = Zero | successor(Nat)\). The natural numbers can also be represented as a non-empty list of binary digits. \(BinNat = Zero | One | (Zero | One, BinNat)\). Representing numbers in the unary case is useful for proving theorems by induction, and representing numbers in binary is useful for computation so, ideally, we would be able to transport between the two representations while knowing that nothing can break. 
+    Remember that the definition we want for equal types is "we can replace one equal type for another and the specified behavior will not change" so we want to show that \(Nat =_{Nat} BinNat\). 
+    We can start by identifying zero with the Atomic Reflexivity rule: \[\frac{Zero:Atom_{Nat}}{Zero =_{Nat}Zero}\]
+    and one with Atomic Equality: \[\frac{One:Atom_{Nat} \quad sucessor(zero):Atom_{Nat} \quad One \equiv_{Nat} successor(Zero)}{One =_{Nat} successor(Zero)}\]
+
     <h3 id="types-through-examples">Types Through Examples</h3>
     <p>
         When we are programming is is useful to start defining types as the simple case and then creating a more general version later. This process of generalizations often gets programmers in trouble where they used a specific version of a type somewhere in their code and the new generalization breaks it. let's start with a very basic example. We can create a new object called "zero" and say it is an element of the natural numbers by adding a subtype (isA) relation between it and the "natural number" object.

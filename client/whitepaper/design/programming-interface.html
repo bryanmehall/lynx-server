@@ -6,7 +6,13 @@
     </p>
     <p>
         why graphical is good-- 
+        edit locality
+        don't need to look through source code for where something is implemented.
     </p>
+    <p>
+        implementation agnostic
+    </p>
+
     <p>
         Functional programming focuses on a single type of relations between objects: How an object is evaluated. While this is is an interesting property of an object, and probably the most useful from a computational perspective, it makes programming in a functional style difficult. The solution is to add a generalization of relations between objects where the concept of evaluation is only one of them. 
     </p>
@@ -14,8 +20,10 @@
         Lynx offers features for determining how the result of a program was defined built into the language. Say a programmer is implementing a collision detection algorithm but it isn't working properly...introspect into how the collision boolean was defined instead fo stepping forward through imperative code to the point of the error
         When combined with graphical representations of each of these concepts this forms an extremely powerful debugging tool
     </p>
+    
     <p>
         Keep track of definitions. In most languages, computation is uni-directional. Lynx keeps track of where values come from so that it can be audited at a later time. This feature creates an extremely powerful tool for debugging programs. Instead of a programmer needing to understand the whole structure of a program and work forward to a bug, theycan see where there is an incorrect value and then work backwards.  
+        Keeping track of definitions also allows for more intuitive update patterns where the programmer doesn't have to explicitly trigger an update. This improves the separation between specification and implementation, prevents bugs, and improves possibilities for optimization. 
     </p>
     <!--change order of following paragraphs-->
     <p>

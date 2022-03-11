@@ -1,0 +1,11 @@
+<h3>Dependencies</h3>
+In the type LynxExpression, the set of dependencies for a given expression \(e\) is a set of references \(\{r_0, r_1, ...\}\)
+
+<h4>Update Types</h4>
+How do these determine if variables range over variables or values? 
+<h5>Push</h5>
+Objects keep list of dependents. For every event, dispatch events to each dependent.
+<h5>Poll</h5>
+
+<h5>Pull</h5>
+Whenever a view is requested, get a value and if a value is tagged with an update then retrieve the update instead. Identity is based off of definitions and therefore dependencies.
